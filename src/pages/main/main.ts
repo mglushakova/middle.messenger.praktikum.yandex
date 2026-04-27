@@ -1,5 +1,6 @@
 import Handlebars from "handlebars";
 import mainPageTemplate from "./main.hbs?raw";
+import "@/styles/main.scss";
 
 Handlebars.registerPartial("main-page", mainPageTemplate); 
 
