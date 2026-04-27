@@ -11,4 +11,5 @@ export default defineConfig({
         open: true,
         port,
     },
+    root: "./src"
 });
