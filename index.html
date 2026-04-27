@@ -1,13 +1,28 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>middle.messenger.praktikum.yandex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список чатов</title>
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <script id="chat-template" type="text/x-handlebars-template">
+      <div class="chat-item">
+        <div class="chat-item__block chat-item__block--current">
+          <div class="chat-item__avatar">avatar.jpg</div>
+          <div class="chat-item__name">
+            Приветственный чат
+            <time class="chat-item__date" datetime="2025-02-15T09:20+06:00">2025-02-15T09:20+06:00</time>
+          </div>
+          <div class="chat-item__message">
+            <span class="chat-item__message-text">Привет!</span>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="./src/index.ts" type="module"></script>
   </body>
-</html>
+</html> 
