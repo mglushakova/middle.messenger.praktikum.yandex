@@ -1,0 +1,19 @@
+@use '@/styles/base/variables' as *;
+
+.button {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    background-color: $color-blue;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color $transition-default;
+
+    &:hover,
+    &:focus-visible {
+        background-color: rgba($color-blue, 0.8);
+    }
+}

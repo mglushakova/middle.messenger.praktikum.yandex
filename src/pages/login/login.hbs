@@ -1,14 +1,19 @@
-<h1>Страница логина</h1>
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Логин</title>
-  </head>
-
-  <body>
-    <script src="./login/login.ts" type="module"></script>
-  </body>
-</html> 
+<main>
+  <section class="login-page">
+    <form class="login-form">
+      <h1 class="heading-l login-form__heading">Вход</h1>
+      <fieldset class="login-form__fieldset text-input">
+        <label for="login" class="text-input__label">Логин</label>
+        <input type="text" name="login" id="login" class="text-input__input">
+      </fieldset>
+      <fieldset class="login-form__fieldset text-input">
+        <label for="password" class="text-input__label">Пароль</label>
+        <input type="password" name="password" id="password" class="text-input__input">
+      </fieldset>
+      <div class="login-form__bottom-block">
+        <button type="submit" class="login-form__button button">Авторизоваться</button>
+        <a class="login-form__link" href="../register.html">Нет аккаунта?</a>
+      </div>
+    </form>
+  </section>
+</main>
