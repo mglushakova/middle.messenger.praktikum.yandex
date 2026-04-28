@@ -1,0 +1,18 @@
+<fieldset class="text-input {{className}}">
+  <div class="text-input__wrapper">
+    <label for="{{id}}" class="text-input__label">
+      {{label}}
+    </label>
+    <input
+      type="{{type}}"
+      name="{{name}}"
+      id="{{id}}"
+      class="text-input__input"
+      value="{{value}}"
+    />
+  </div>
+
+  {{#if error}}
+    <p class="text-input__error">{{error}}</p>
+  {{/if}}
+</fieldset>

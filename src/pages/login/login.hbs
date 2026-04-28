@@ -2,14 +2,22 @@
   <section class="login-page">
     <form class="login-form">
       <h1 class="heading-l login-form__heading">Вход</h1>
-      <fieldset class="login-form__fieldset text-input">
-        <label for="login" class="text-input__label">Логин</label>
-        <input type="text" name="login" id="login" class="text-input__input">
-      </fieldset>
-      <fieldset class="login-form__fieldset text-input">
-        <label for="password" class="text-input__label">Пароль</label>
-        <input type="password" name="password" id="password" class="text-input__input">
-      </fieldset>
+      {{> text-input
+        label="Логин"
+        name="login"
+        id="login"
+        type="text"
+        error="Неверный логин"
+        className="login-form__fieldset"
+      }}
+
+      {{> text-input
+        label="Пароль"
+        name="password"
+        id="password"
+        type="password"
+        className="login-form__fieldset"
+      }}
       <div class="login-form__bottom-block">
         <button type="submit" class="login-form__button button">Авторизоваться</button>
         <a class="login-form__link" href="../register.html">Нет аккаунта?</a>
