@@ -1,5 +1,6 @@
 import Handlebars from "handlebars";
 import chatListPageTemplate from "./chat-list.hbs?raw";
+import "../../styles/main.scss";
 
 Handlebars.registerPartial("chat-list-page", chatListPageTemplate); 
 
