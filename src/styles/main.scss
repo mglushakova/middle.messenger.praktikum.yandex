@@ -1,4 +1,7 @@
 @use './base/typography';
+@use './base/variables';
+@use '@/blocks/button/button';
+@use '@/blocks/link/link';
 
 body {
   min-height: 100vh;
