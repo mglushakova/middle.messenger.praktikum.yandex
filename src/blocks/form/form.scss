@@ -1,15 +1,9 @@
 @use '@/styles/base/variables' as *;
 
-.login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 24px;
-}
-
-.login-form {
+.form {
     width: 100%;
     max-width: 340px;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,28 +13,32 @@
     box-shadow: 0px 0px 6px 0px #00000024;
 }
 
-.login-form__fieldset {
+.form__fieldset {
     width: 100%;
+
+    &:last-of-type {
+        margin-bottom: 47px;
+    }
 }
 
-.login-form__heading {
+.form__title {
     margin: 0 0 40px;
 }
 
-.login-form__bottom-block {
+.form__bottom {
     width: 100%;
-    margin-top: 160px;
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
 }
 
-.login-form__button {
+.form__button {
     width: 100%;
 }
 
-.login-form__link {
+.form__link {
     position: relative;
     font-size: 11px;
     line-height: 1;

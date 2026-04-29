@@ -1,1 +1,67 @@
-<h1>Страница регистрации</h1>
+<main>
+  <section class="form-page">
+    {{#> form
+      title="Регистрация"
+      buttonText="Зарегистрироваться"
+      linkText="Войти"
+      linkHref="/login.html"
+    }}
+      {{> text-input
+        label="Почта"
+        name="email"
+        id="email"
+        type="text"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Логин"
+        name="login"
+        id="login"
+        type="text"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Имя"
+        name="name"
+        id="name"
+        type="text"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Фамилия"
+        name="surname"
+        id="surname"
+        type="text"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Телефон"
+        name="phone"
+        id="phone"
+        type="text"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Пароль"
+        name="password"
+        id="password"
+        type="password"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Пароль еще раз"
+        name="password-confirm"
+        id="password-confirm"
+        type="password"
+        className="form__fieldset"
+        error="Пароли не совпадают"
+      }}
+    {{/form}}
+  </section>
+</main>

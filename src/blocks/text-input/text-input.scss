@@ -10,8 +10,14 @@
     &:focus-within {
         .text-input__label {
             top: -12px;
-            transform: translateY(-4px) translateX(-1px) scale(0.9);
+            transform: translateY(-4px) translateX(-5%) scale(0.9);
         }
+    }
+}
+
+.text-input_state_error {
+    .text-input__input {
+        color: $color-error;
     }
 }
 
