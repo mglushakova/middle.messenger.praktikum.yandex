@@ -21,6 +21,18 @@
     }
 }
 
+.profile-page__content {
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @media screen and (min-width: 480px) {
+        width: 100%;
+        padding: 60px;
+    }
+}
+
 .profile-page__back-link {
     padding: 18px;
     width: 100%;

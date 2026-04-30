@@ -1,0 +1,40 @@
+@use '@/styles/base/variables' as *;
+
+.profile-input {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+}
+
+.profile-input__wrapper {
+    padding: 10px 0;
+    border-bottom: 1px solid $color-middle-grey;
+
+    @media screen and (min-width: 480px) {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.profile-input__label {
+    width: 100%;
+    font-size: 13px;
+    line-height: 1;
+
+    @media screen and (min-width: 480px) {
+        width: fit-content;
+    }
+}
+
+.profile-input__input {
+    width: 100%;
+    padding: 0;
+    color: $color-grey;
+    border: none;
+    
+    @media screen and (min-width: 480px) {
+        width: fit-content;
+        text-align: right;
+    }
+}
