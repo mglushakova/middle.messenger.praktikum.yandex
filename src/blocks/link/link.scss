@@ -26,3 +26,15 @@
         }
     }
 }
+
+.link_type_danger {
+    color: $color-error;
+
+    &::after {
+        background-color: $color-error;
+    }
+}
+
+.link_size_medium {
+    font-size: 13px;
+}

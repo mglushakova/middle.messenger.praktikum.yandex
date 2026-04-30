@@ -1,0 +1,45 @@
+@use '@/styles/base/variables' as *;
+
+.profile {
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @media screen and (min-width: 480px) {
+        width: 100%;
+        padding: 60px;
+    }
+}
+
+.profile__avatar {
+    margin-bottom: 20px;
+    color: #EFEFEF;
+}
+
+.profile__list,
+.profile__links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    max-width: 510px;
+}
+
+.profile__name {
+    margin-bottom: 60px;
+}
+
+.profile__links {
+    margin-top: 40px;
+}
+
+.profile__link-item {
+    padding: 10px 0;
+    font-size: 13px;
+    border-bottom: 1px solid $color-middle-grey;
+
+    &:last-of-type {
+        border: none;
+    }
+}

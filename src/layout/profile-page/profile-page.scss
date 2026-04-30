@@ -1,0 +1,55 @@
+@use '@/styles/base/variables' as *;
+
+.profile-page {
+    @media screen and (min-width: 480px) {
+        display: flex;
+    }
+}
+
+.profile-page__nav {
+    margin-bottom: 60px;
+    height: 64px;
+    display: flex;
+    background-color: $color-light-grey;
+    border-bottom: 1px solid $color-middle-grey;
+
+    @media screen and (min-width: 480px) {
+        width: 64px;
+        height: 100vh;
+        border-bottom: none;
+        border-right: 1px solid $color-middle-grey;
+    }
+}
+
+.profile-page__back-link {
+    padding: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-light-grey;
+    border-bottom: 1px solid $color-middle-grey;
+    cursor: pointer;
+
+    @media screen and (min-width: 480px) {
+        height: 100vh;
+        border-bottom: none;
+        border-right: 1px solid $color-middle-grey;
+    }
+}
+
+.profile-page__link-wrapper {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color-blue;
+    transition: color $transition-default;
+
+    &:hover,
+    &:focus-visible {
+        background-color: rgba($color-blue, 0.8);
+    }
+}
