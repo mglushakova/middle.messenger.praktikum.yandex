@@ -4,8 +4,8 @@ import './profile.scss';
 import '@/layout/profile-page/profile-page.scss';
 import profileTemplate from './profile.hbs?raw';
 import profilePageTemplate from '@/layout/profile-page/profile-page.hbs?raw';
-import avatarIcon from '@/blocks/avatar/avatar-placeholder.hbs?raw';
-import '@/blocks/avatar/avatar-placeholder.scss';
+import avatarIcon from '@/blocks/avatar/avatar.hbs?raw';
+import '@/blocks/avatar/avatar.scss';
 import profileItem from '@/blocks/profile-item/profile-item.hbs?raw';
 import '@/blocks/profile-item/profile-item.scss';
 
