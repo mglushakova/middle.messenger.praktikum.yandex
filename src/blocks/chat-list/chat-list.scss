@@ -2,6 +2,8 @@
 
 .chat-list {
     padding: 20px 10px;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -9,13 +11,19 @@
 .chat-list__items {
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
     list-style: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .chat-list__link {
     position: relative;
     margin-left: auto;
     margin-bottom: 23px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: $color-grey;
     font-size: 12px;
     text-decoration: none;
@@ -43,7 +51,7 @@
 .chat-list__search {
     padding: 10px;
     border-radius: 5px;
-    background-color: #EFEFEF;
+    background-color: $color-middle-grey-2;
     border: none;
     margin-bottom: 14px;
 
@@ -51,5 +59,12 @@
         font-size: 12px;
         color: $color-grey;
         text-align: center;
+    }
+
+    &:placeholder-shown {
+        background-image: url('@/assets/icons/search.svg');
+        background-repeat: no-repeat;
+        background-position: 39% center;
+        background-size: 20px 20px;
     }
 }
