@@ -70,11 +70,12 @@ src/
 
 ## 📖 Доступные страницы:
 
+* `/main.html` — список всех страниц
 * `/login.html` — авторизация
 * `/register.html` — регистрация
 * `/profile.html` — профиль
 * `/profile-edit.html` — редактирование профиля
-* `/password-change.html` — смена пароля
+* `/password-edit.html` — смена пароля
 * `/chat.html` — страница чата
 * `/error.html` — страница ошибки 404
 * `/not-found.html` — страница ошибки 500
