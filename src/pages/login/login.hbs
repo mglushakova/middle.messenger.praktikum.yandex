@@ -1,0 +1,25 @@
+{{#> form-page }}
+    {{#> form
+      title="Вход"
+      buttonText="Авторизоваться"
+      linkText="Нет аккаунта?"
+      linkHref="/register.html"
+    }}
+      {{> text-input
+        label="Логин"
+        name="login"
+        id="login"
+        type="text"
+        error="Неверный логин"
+        className="form__fieldset"
+      }}
+
+      {{> text-input
+        label="Пароль"
+        name="password"
+        id="password"
+        type="password"
+        className="form__fieldset"
+      }}
+    {{/form}}
+{{/form-page}}

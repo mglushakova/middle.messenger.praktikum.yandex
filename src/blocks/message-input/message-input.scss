@@ -1,0 +1,43 @@
+@use '@/styles/base/variables' as *;
+
+.message-input {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.message-input__file-attach {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.message-input__field {
+    padding: 10px 20px;
+    height: 32px;
+    flex-grow: 1;
+    background-color: $color-middle-grey-2;
+    border-radius: 30px;
+    border: none;
+
+    &::placeholder {
+        font-size: 12px;
+        line-height: 1;
+        color: $color-grey;
+    }
+}
+
+.message-input__send {
+    padding: 2px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    border: none;
+    border-radius: 50%;
+    background-color: #3369F3;
+    cursor: pointer;
+}
