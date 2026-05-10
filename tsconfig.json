@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2023",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
     "module": "esnext",
-    "lib": ["ES2023", "DOM"],
+    "lib": ["ESNext", "DOM"],
     "types": ["vite/client", "node"],
     "skipLibCheck": true,
     "baseUrl": "src",
@@ -11,7 +12,11 @@
     },
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -20,6 +25,10 @@
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
