@@ -12,25 +12,26 @@ export default defineConfig({
         open: true,
         port,
     },
-    root: "./src",
+    root: './src',
     resolve: {
         alias: {
-        '@': path.resolve(__dirname, './src'),
+            '@': path.resolve(__dirname, './src'),
         },
     },
     build: {
         rollupOptions: {
             input: {
-                main: path.resolve(__dirname, './src/index.html'),
-                chat: path.resolve(__dirname, './src/chat.html'),
-                login: path.resolve(__dirname, './src/login.html'),
-                register: path.resolve(__dirname, './src/register.html'),
-                error: path.resolve(__dirname, './src/error.html'),
-                'not-found': path.resolve(__dirname, './src/not-found.html'),
-                'password-edit': path.resolve(__dirname, './src/password-edit.html'),
-                'profile-edit': path.resolve(__dirname, './src/profile-edit.html'),
-                'profile': path.resolve(__dirname, './src/profile.html'),
+                main: path.resolve(__dirname, './src/pages/main/index.html'),
+                chat: path.resolve(__dirname, './src/pages/chat-page/chat.html'),
+                login: path.resolve(__dirname, './src/pages/login/login.html'),
+                register: path.resolve(__dirname, './src/pages/register/register.html'),
+                error: path.resolve(__dirname, './src/pages/error/error.html'),
+                'not-found': path.resolve(__dirname, './src/pages/not-found/not-found.html'),
+                'password-edit': path.resolve(__dirname, './src/pages/password/password-edit.html'),
+                'profile-edit': path.resolve(__dirname, './src/pages/profile-edit/profile-edit.html'),
+                'profile': path.resolve(__dirname, './src/pages/profile/profile.html'),
             },
         },
     }   
 });
+

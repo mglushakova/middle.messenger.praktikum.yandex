@@ -5,6 +5,10 @@
     "lib": ["ES2023", "DOM"],
     "types": ["vite/client", "node"],
     "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
