@@ -32,7 +32,7 @@ export default defineConfig({
         ),
         "password-edit": path.resolve(
           __dirname,
-          "./src/pages/password/password-edit.html",
+          "./src/pages/password-edit/password-edit.html",
         ),
         "profile-edit": path.resolve(
           __dirname,
