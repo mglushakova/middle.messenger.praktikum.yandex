@@ -1,18 +1,22 @@
-<fieldset class="profile-input {{className}} {{#if error}}profile-input_state_error{{/if}}">
+<fieldset
+  class="profile-input {{
+    className
+  }} {{#if error}}profile-input_state_error{{/if}}"
+>
   <div class="profile-input__wrapper">
-    <label for="{{id}}" class="profile-input__label">
-      {{label}}
+    <label for="{{ id }}" class="profile-input__label">
+      {{ label }}
     </label>
     <input
-      type="{{type}}"
-      name="{{name}}"
-      id="{{id}}"
+      type="{{ type }}"
+      name="{{ name }}"
+      id="{{ id }}"
       class="profile-input__input"
-      value="{{value}}"
+      value="{{ value }}"
     />
   </div>
 
   {{#if error}}
-    <p class="profile-input__error">{{error}}</p>
+  <p class="profile-input__error">{{ error }}</p>
   {{/if}}
 </fieldset>
