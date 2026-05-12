@@ -1,22 +1,24 @@
-import type { HelperOptions } from "handlebars";
-import Handlebars from "handlebars";
-import Block, { type BlockOwnProps } from "@/blocks/block/block";
+import type { HelperOptions } from 'handlebars';
+import Handlebars from 'handlebars';
+import { Block, type BlockProps } from '@/shared/lib/block';
 
-type BlockClass<P extends BlockOwnProps = BlockOwnProps> = {
+type BlockClass<P extends BlockProps = BlockProps> = {
   new (props: P): Block<P>;
   componentName: string;
 };
 
 let uniqueId = 0;
 
-function registerComponent<P extends BlockOwnProps>(Component: BlockClass<P>) {
+function registerComponent<P extends BlockProps>(Component: BlockClass<P>) {
+  console.log('REGISTER HELPER', Component.componentName);
   Handlebars.registerHelper(
     Component.componentName,
     function ({ hash, data }: HelperOptions) {
+      console.log('HELPER CALLED', Component.componentName);
       const dataAttribute = `data-component-hbs-id="${++uniqueId}"`;
       const component = new Component(hash as P);
 
-      if ("ref" in hash) {
+      if ('ref' in hash) {
         (data.root.__refs = data.root.__refs || {})[hash.ref] =
           component.element();
       }
@@ -24,6 +26,7 @@ function registerComponent<P extends BlockOwnProps>(Component: BlockClass<P>) {
       (data.root.__children = data.root.__children || []).push({
         component,
         embed(node: DocumentFragment) {
+          console.log('EMBED', Component.componentName);
           const placeholder = node.querySelector(`[${dataAttribute}]`);
           if (!placeholder) {
             throw new Error(
@@ -38,7 +41,7 @@ function registerComponent<P extends BlockOwnProps>(Component: BlockClass<P>) {
         },
       });
 
-      return `<div ${dataAttribute}></div>`;
+      return new Handlebars.SafeString(`<div ${dataAttribute}></div>`);
     },
   );
 }

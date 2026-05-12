@@ -1,6 +1,6 @@
-@use "@/styles/base/variables" as *;
+@use '@/styles/base/variables' as *;
 
-.text-input {
+.input {
   position: relative;
   margin: 0;
   padding: 0;
@@ -8,24 +8,24 @@
 
   &.is-filled,
   &:focus-within {
-    .text-input__label {
+    .input__label {
       top: -12px;
       transform: translateY(-4px) translateX(-5%) scale(0.9);
     }
   }
 }
 
-.text-input_state_error {
-  .text-input__input {
+.input_state_error {
+  .input__input {
     color: $color-error;
   }
 }
 
-.text-input__wrapper {
+.input__wrapper {
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     bottom: -7px;
     left: 0;
@@ -35,7 +35,7 @@
   }
 }
 
-.text-input__label {
+.input__label {
   position: absolute;
   left: 0;
   bottom: 7px;
@@ -45,7 +45,7 @@
   transition: transform 0.4s ease;
 }
 
-.text-input__input {
+.input__input {
   font-size: 13px;
   line-height: 1;
   border: none;
@@ -55,7 +55,7 @@
   }
 }
 
-.text-input__error {
+.input__error {
   margin: 14px 0 0;
   font-size: 8px;
   line-height: 1;

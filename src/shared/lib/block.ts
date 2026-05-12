@@ -2,20 +2,20 @@ import Handlebars from 'handlebars';
 type EventListType = Partial<
   Record<keyof HTMLElementEventMap, (e: Event) => void>
 >;
-export interface BlockOwnProps {
+export interface BlockProps {
   __children?: Array<{
-    component: Block<object>;
+    component: Block<BlockProps>;
     embed(node: DocumentFragment): void;
   }>;
   __refs?: Record<string, Element>;
 }
-export default abstract class Block<Props extends BlockOwnProps> {
+export abstract class Block<Props extends BlockProps> {
   protected abstract template: string;
   protected props = {} as Props;
   private domElement: Element | null = null;
   protected events: EventListType = {};
   protected refs: Record<string, Element> = {};
-  protected children: Block<object>[] = [];
+  protected children: Block<BlockProps>[] = [];
 
   constructor(props: Props = {} as Props) {
     this.props = props;
@@ -37,29 +37,31 @@ export default abstract class Block<Props extends BlockOwnProps> {
     this.mountComponent();
   }
   private compile(): Element | null {
-    const html = Handlebars.compile(this.template)(this.props);
+    const props = {
+      ...this.props,
+      __children: [],
+      __refs: {},
+    };
+
+    const html = Handlebars.compile(this.template)(props);
+
     const templateElement = document.createElement('template');
+
     templateElement.innerHTML = html;
+
     const fragment = templateElement.content;
-    if (this.props.__children) {
-      this.children = this.props.__children.map((child) => child.component);
-      this.props.__children.forEach((child) => {
+
+    if (props.__children) {
+      this.children = props.__children.map((child) => child.component);
+
+      props.__children.forEach((child) => {
         child.embed(fragment);
       });
     }
-    const defaultRefs = this.props?.__refs ?? {};
-    this.refs = Array.from(fragment.querySelectorAll('[ref]')).reduce(
-      (list, element) => {
-        const key = element.getAttribute('ref');
-        if (key) {
-          list[key] = element as HTMLElement;
-        }
-        element.removeAttribute('ref');
-        return list;
-      },
-      defaultRefs,
-    );
-    return templateElement.content.firstElementChild;
+
+    this.refs = props.__refs ?? {};
+
+    return fragment.firstElementChild;
   }
   public setProps(props: Partial<Props>) {
     this.props = { ...this.props, ...props, __children: [], __refs: {} };
