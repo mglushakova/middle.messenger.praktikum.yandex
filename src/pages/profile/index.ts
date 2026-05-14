@@ -1,11 +1,12 @@
 import '@/app';
 import '@/styles/main.scss';
-import { LoginPage } from './login-page';
+import './profile.scss';
+import { ProfilePage } from './profile-page';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';
 
 registerPartials();
 
-const page = new LoginPage();
+const page = new ProfilePage();
 
 const element = page.element();
 

@@ -1,4 +1,4 @@
-import Block from '@/shared/lib/block';
+import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
 import { validate } from '@/shared/lib/validation';

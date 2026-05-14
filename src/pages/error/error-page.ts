@@ -1,10 +1,10 @@
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
-export class NotFoundPage extends Block<BlockProps> {
+export class ErrorPage extends Block<BlockProps> {
   protected template = `{{#>error-page
-                            title="404"
-                            description="Не туда попали"
+                            title="500"
+                            description="Мы уже фиксим"
                             linkHref="../chat-page/chat.html"
                             linkText="Назад к чатам"}}
                         {{/error-page}}`;

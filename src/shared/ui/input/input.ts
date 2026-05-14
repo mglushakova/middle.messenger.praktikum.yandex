@@ -15,7 +15,7 @@ export class Input extends Block<InputProps> {
   static componentName = 'Input';
 
   protected template = `
-    <fieldset class="input form__fieldset {{ className }} {{#if error}}input_state_error{{/if}}">
+    <fieldset class="input {{ className }} {{#if error}}input_state_error{{/if}}">
       <div class="input__wrapper">
         <label for="{{ id }}" class="input__label">
           {{ label }}
