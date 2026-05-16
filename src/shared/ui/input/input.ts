@@ -3,6 +3,7 @@ import type { BlockProps } from '@/shared/lib/block';
 
 import { validate } from '@/shared/lib/validation';
 import './input.scss';
+import './profile-input.scss';
 
 interface InputProps extends BlockProps {
   id: string;
@@ -15,22 +16,49 @@ export class Input extends Block<InputProps> {
   static componentName = 'Input';
 
   protected template = `
-    <fieldset class="input {{ className }} {{#if error}}input_state_error{{/if}}">
-      <div class="input__wrapper">
-        <label for="{{ id }}" class="input__label">
-          {{ label }}
-        </label>
-        <input
-          type="{{ type }}"
-          name="{{ name }}"
-          id="{{ id }}"
-          class="input__input"
-          value="{{ value }}"
-        />
-      </div>
+    {{#if isProfile}}
+      <fieldset
+        class="profile-input {{
+          className
+        }} {{#if error}}profile-input_state_error{{/if}}"
+      >
+        <div class="profile-input__wrapper">
+          <label for="{{ id }}" class="profile-input__label">
+            {{ label }}
+          </label>
+          <input
+            type="{{ type }}"
+            name="{{ name }}"
+            id="{{ id }}"
+            class="profile-input__input"
+            value="{{ value }}"
+          />
+        </div>
 
-      <p class="input__error">{{ error }}</p>
-    </fieldset>
+        {{#if error}}
+        <p class="profile-input__error">{{ error }}</p>
+        {{/if}}
+      </fieldset>
+      {{else}}
+      <fieldset class="input {{ className }} {{#if error}}input_state_error{{/if}}">
+        <div class="input__wrapper">
+          <label for="{{ id }}" class="input__label">
+            {{ label }}
+          </label>
+          <input
+            type="{{ type }}"
+            name="{{ name }}"
+            id="{{ id }}"
+            class="input__input"
+            value="{{ value }}"
+          />
+        </div>
+
+        {{#if error}}
+        <p class="input__error">{{ error }}</p>
+        {{/if}}
+      </fieldset>
+      {{/if}}
   `;
 
   protected events = {

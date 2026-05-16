@@ -11,6 +11,24 @@
   box-shadow: 0 0 6px 0 #00000024;
 }
 
+.form_type_profile {
+  width: 100%;
+  max-width: 510px;
+  min-height: unset;
+  gap: unset;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+
+  & .form__button {
+    margin-top: 50px;
+    width: 100%;
+    display: block;
+    max-width: 280px;
+    text-align: center;
+  }
+}
+
 .form__fieldset {
   width: 100%;
 
