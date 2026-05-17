@@ -1,6 +1,7 @@
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 import './message-input.scss';
+import { validate } from '@/shared/lib/validation';
 
 export class MessageInput extends Block<BlockProps> {
   static componentName = 'MessageInput';
@@ -60,11 +61,11 @@ export class MessageInput extends Block<BlockProps> {
         </svg>
       </button>
       <input
-        type="text"
-        name="message"
-        class="message-input__field"
-        placeholder="Сообщение"
-      />
+          type="text"
+          name="message"
+          class="message-input__field"
+          placeholder="Сообщение"
+        />
 
       <button type="submit" class="message-input__send">
         <svg
@@ -94,4 +95,40 @@ export class MessageInput extends Block<BlockProps> {
       </button>
     </form>
   `;
+
+  protected events = {
+    submit: (event: Event) => {
+      event.preventDefault();
+
+      const form = event.target as HTMLFormElement;
+
+      const input = form.elements.namedItem('message') as HTMLInputElement;
+
+      const error = validate('message', input.value);
+
+      if (error) {
+        input.classList.add('message-input__field_error');
+
+        return;
+      }
+
+      input.classList.remove('message-input__field_error');
+
+      console.log({
+        message: input.value,
+      });
+
+      input.value = '';
+    },
+
+    input: (event: Event) => {
+      const target = event.target as HTMLInputElement;
+
+      if (!target.classList.contains('message-input__field')) {
+        return;
+      }
+
+      target.classList.remove('message-input__field_error');
+    },
+  };
 }

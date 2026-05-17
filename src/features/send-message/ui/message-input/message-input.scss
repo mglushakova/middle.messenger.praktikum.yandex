@@ -28,6 +28,10 @@
   }
 }
 
+.message-input__field_error {
+  border: 1px solid $color-error;
+}
+
 .message-input__send {
   padding: 2px;
   width: 28px;
