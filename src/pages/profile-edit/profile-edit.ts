@@ -9,7 +9,6 @@ export class ProfileEditPage extends Block<BlockProps> {
                             {{{ ProfileEditForm }}}
                           </div>
                           {{/profile-page}}
-                          <div></div>
                         </div>
                         `;
 }
