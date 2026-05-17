@@ -1,12 +1,31 @@
-@use "@/styles/base/variables" as *;
+@use '@/app/styles/base/variables' as *;
 
 .chat-item {
+  width: 100%;
+
+  &:last-of-type .chat-item__button {
+    border-bottom: 1px solid $color-middle-grey;
+  }
+}
+
+.chat-item__button {
+  width: 100%;
+  margin: 0;
+  padding: 12px 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
   display: flex;
   justify-content: flex-start;
   gap: 10px;
-  padding: 12px 0;
+  text-align: left;
   border-top: 1px solid $color-middle-grey;
-  border-bottom: 1px solid $color-middle-grey;
+  transition: background-color $transition-default;
+
+  &:hover,
+  &:focus-visible {
+    background-color: #e4edfd;
+  }
 }
 
 .chat-item__avatar {

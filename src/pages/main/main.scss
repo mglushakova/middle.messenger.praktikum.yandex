@@ -1,4 +1,4 @@
-@use "@/styles/base/variables" as *;
+@use '@/app/styles/base/variables' as *;
 
 .main {
   display: flex;
@@ -33,7 +33,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: -3px;

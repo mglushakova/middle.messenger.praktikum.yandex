@@ -1,4 +1,4 @@
-@use "@/styles/base/variables" as *;
+@use '@/app/styles/base/variables' as *;
 
 .avatar {
   position: relative;
@@ -13,7 +13,7 @@
   cursor: pointer;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;

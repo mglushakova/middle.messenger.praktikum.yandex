@@ -1,25 +1,46 @@
-import Handlebars from "handlebars";
-import chatPageTemplate from "./chat-page.hbs?raw";
-import "@/styles/main.scss";
-import "./chat-page.scss";
-import chatList from "@/blocks/chat-list/chat-list.hbs?raw";
-import "@/blocks/chat-list/chat-list.scss";
-import chatItem from "@/blocks/chat-item/chat-item.hbs?raw";
-import "@/blocks/chat-item/chat-item.scss";
-import chatWindow from "@/blocks/chat-window/chat-window.hbs?raw";
-import "@/blocks/chat-window/chat-window.scss";
-import messageInput from "@/blocks/message-input/message-input.hbs?raw";
-import "@/blocks/message-input/message-input.scss";
+import { Block } from '@/shared/lib/block';
+import type { BlockProps } from '@/shared/lib/block';
 
-Handlebars.registerPartial("chat-page", chatPageTemplate);
-Handlebars.registerPartial("chat-list", chatList);
-Handlebars.registerPartial("chat-item", chatItem);
-Handlebars.registerPartial("chat-window", chatWindow);
-Handlebars.registerPartial("message-input", messageInput);
+interface ChatPageProps extends BlockProps {
+  isChatSelected: boolean;
+}
 
-const entryNode = document.body;
-const compiledTemplate = Handlebars.compile(chatPageTemplate)({
-  isChatSelected: true,
-});
+export class ChatPage extends Block<ChatPageProps> {
+  constructor() {
+    super({
+      isChatSelected: false,
+    });
+  }
 
-entryNode.innerHTML = compiledTemplate;
+  protected template = `<main class="chat-page">
+                          <aside class="chat-page__sidebar">
+                            {{{ ChatList }}}
+                          </aside>
+
+                          <section class="chat-page__content">
+                            {{#if isChatSelected}}
+                              {{{ ChatWindow }}}
+                            {{else}}
+                              <div class="chat-page__placeholder">
+                                Выберите чат чтобы отправить сообщение
+                              </div>
+                            {{/if}}
+                          </section>
+                        </main>`;
+
+  protected events = {
+    click: (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      const chatItem = target.closest('.chat-item');
+
+      if (!chatItem) {
+        return;
+      }
+
+      this.setProps({
+        isChatSelected: true,
+      });
+    },
+  };
+}

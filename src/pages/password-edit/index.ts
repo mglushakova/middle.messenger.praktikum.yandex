@@ -1,5 +1,5 @@
 import '@/app';
-import '@/styles/main.scss';
+import '@/app/styles/main.scss';
 import './password-edit.scss';
 import { PasswordEditPage } from './password-edit';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';

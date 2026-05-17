@@ -1,12 +1,12 @@
 import '@/app';
 import '@/app/styles/main.scss';
-import './profile.scss';
-import { ProfilePage } from './profile-page';
+import './chat-page.scss';
+import { ChatPage } from './chat-page';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';
 
 registerPartials();
 
-const page = new ProfilePage();
+const page = new ChatPage();
 
 const element = page.element();
 

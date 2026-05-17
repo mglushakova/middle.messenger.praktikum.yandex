@@ -1,5 +1,5 @@
 import '@/app';
-import '@/styles/main.scss';
+import '@/app/styles/main.scss';
 import './profile-edit.scss';
 import { ProfileEditPage } from './profile-edit';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';

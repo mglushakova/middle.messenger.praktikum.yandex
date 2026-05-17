@@ -1,5 +1,5 @@
 import '@/app';
-import '@/styles/main.scss';
+import '@/app/styles/main.scss';
 import { RegisterPage } from './register-page';
 import '@/shared/ui/form-page/form-page.scss';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';

@@ -1,5 +1,5 @@
 import '@/app';
-import '@/styles/main.scss';
+import '@/app/styles/main.scss';
 import { ErrorPage } from './error-page';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';
 

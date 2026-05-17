@@ -1,7 +1,7 @@
-@use "@/styles/base/variables" as *;
+@use '@/app/styles/base/variables' as *;
 
 .chat-list {
-  padding: 20px 10px;
+  padding: 20px 0;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -19,8 +19,7 @@
 
 .chat-list__link {
   position: relative;
-  margin-left: auto;
-  margin-bottom: 23px;
+  margin: 0 10px 23px auto;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -29,7 +28,7 @@
   text-decoration: none;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: -3px;
@@ -49,6 +48,7 @@
 }
 
 .chat-list__search {
+  margin: 0 10px;
   padding: 10px;
   border-radius: 5px;
   background-color: $color-middle-grey-2;
@@ -62,7 +62,7 @@
   }
 
   &:placeholder-shown {
-    background-image: url("@/assets/icons/search.svg");
+    background-image: url('@/assets/icons/search.svg');
     background-repeat: no-repeat;
     background-position: 39% center;
     background-size: 20px 20px;

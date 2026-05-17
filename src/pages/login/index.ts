@@ -1,5 +1,5 @@
 import '@/app';
-import '@/styles/main.scss';
+import '@/app/styles/main.scss';
 import { LoginPage } from './login-page';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';
 
