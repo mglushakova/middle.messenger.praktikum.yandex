@@ -11,8 +11,6 @@
       "@/*": ["./src/*"]
     },
     "ignoreDeprecations": "6.0",
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "strict": true,
     "resolveJsonModule": true,
@@ -22,8 +20,6 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
-
-    /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
