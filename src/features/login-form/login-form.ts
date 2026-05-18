@@ -24,10 +24,6 @@ export class LoginForm extends Block<BlockProps> {
     submit: (event: Event) => {
       event.preventDefault();
 
-      // const loginInput = this.refs.login as HTMLInputElement;
-
-      // const passwordInput = this.refs.password as HTMLInputElement;
-
       const form = event.target as HTMLFormElement;
 
       const formData = new FormData(form);

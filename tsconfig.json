@@ -6,9 +6,8 @@
     "lib": ["ESNext", "DOM"],
     "types": ["vite/client", "node"],
     "skipLibCheck": true,
-    "baseUrl": "src",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./src/*"]
     },
 
     /* Bundler mode */
