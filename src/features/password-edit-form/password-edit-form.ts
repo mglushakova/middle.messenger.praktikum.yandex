@@ -9,18 +9,14 @@ export class PasswordEditForm extends Block<BlockProps> {
   protected template = `
     {{#> Form buttonText="Сохранить" isProfile=true }}
       {{{ Input type="password" isProfile=true ref="password" name="password" label="Старый пароль" id="password" className="profile-form__fieldset" value="testpassword" }}}
-      {{{ Input type="password" isProfile=true ref="new-password" name="new-password" label="Новый пароль" id="new-password" className="profile-form__fieldset" }}}
-      {{{ Input type="password" isProfile=true ref="new-password-confirm" name="new-password-confirm" label="Новый пароль" id="new-password-confirm" className="profile-form__fieldset" }}}
+      {{{ Input type="password" isProfile=true ref="new_password" name="new_password" label="Новый пароль" id="new_password" className="profile-form__fieldset" }}}
+      {{{ Input type="password" isProfile=true ref="new_password-confirm" name="new_password-confirm" label="Повторите новый пароль" id="new_password-confirm" className="profile-form__fieldset" }}}
     {{/Form}}
   `;
 
   protected events = {
     submit: (event: Event) => {
       event.preventDefault();
-
-      // const loginInput = this.refs.login as HTMLInputElement;
-
-      // const passwordInput = this.refs.password as HTMLInputElement;
 
       const form = event.target as HTMLFormElement;
 

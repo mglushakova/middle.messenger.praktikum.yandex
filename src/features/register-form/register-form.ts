@@ -11,8 +11,8 @@ export class RegisterForm extends Block<BlockProps> {
 
       {{{ Input type="text" placeholder="Почта" ref="email" name="email" label="Почта" id="email" className="form__fieldset" }}}
       {{{ Input type="text" placeholder="Логин" ref="login" name="login" label="Логин" id="login" className="form__fieldset" }}}
-      {{{ Input type="text" placeholder="Имя" ref="name" name="name" label="Имя" id="name" className="form__fieldset" }}}
-      {{{ Input type="text" placeholder="Фамилия" ref="surname" name="surname" label="Фамилия" id="surname" className="form__fieldset" }}}
+      {{{ Input type="text" placeholder="Имя" ref="first_name" name="first_name" label="Имя" id="first_name" className="form__fieldset" }}}
+      {{{ Input type="text" placeholder="Фамилия" ref="second_name" name="second_name" label="Фамилия" id="second_name" className="form__fieldset" }}}
       {{{ Input type="text" placeholder="Телефон" ref="phone" name="phone" label="Телефон" id="phone" className="form__fieldset" }}}
       {{{ Input type="text" placeholder="Пароль" ref="password" name="password" label="Пароль" id="password" className="form__fieldset" }}}
       {{{ Input type="text" placeholder="Пароль еще раз" ref="password-confirm" name="password-confirm" label="Пароль еще раз" id="password-confirm" className="form__fieldset" }}}
@@ -23,10 +23,6 @@ export class RegisterForm extends Block<BlockProps> {
   protected events = {
     submit: (event: Event) => {
       event.preventDefault();
-
-      // const loginInput = this.refs.login as HTMLInputElement;
-
-      // const passwordInput = this.refs.password as HTMLInputElement;
 
       const form = event.target as HTMLFormElement;
 

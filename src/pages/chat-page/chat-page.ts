@@ -19,7 +19,7 @@ export class ChatPage extends Block<ChatPageProps> {
 
                           <section class="chat-page__content">
                             {{#if isChatSelected}}
-                              {{{ ChatWindow }}}
+                              {{{ ChatWindow chat=selectedChat }}}
                             {{else}}
                               <div class="chat-page__placeholder">
                                 Выберите чат чтобы отправить сообщение

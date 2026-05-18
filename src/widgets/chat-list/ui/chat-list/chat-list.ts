@@ -21,6 +21,12 @@ export class ChatList extends Block<BlockProps> {
         {{{ ChatItem
           name="Вадим"
           lastMessage="Привет"
+          time="10:49"
+        }}}
+
+        {{{ ChatItem
+          name="Киноклуб"
+          lastMessage="Вы: стикер"
           time="12:00"
         }}}
       </ul>

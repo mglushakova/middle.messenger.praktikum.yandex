@@ -10,6 +10,12 @@ interface InputProps extends BlockProps {
   name: string;
   type?: string;
   placeholder?: string;
+
+  label?: string;
+  value?: string;
+  className?: string;
+  error?: string;
+  isProfile?: boolean;
 }
 
 export class Input extends Block<InputProps> {
@@ -35,9 +41,7 @@ export class Input extends Block<InputProps> {
           />
         </div>
 
-        {{#if error}}
         <p class="profile-input__error">{{ error }}</p>
-        {{/if}}
       </fieldset>
       {{else}}
       <fieldset class="input {{ className }} {{#if error}}input_state_error{{/if}}">
@@ -54,9 +58,7 @@ export class Input extends Block<InputProps> {
           />
         </div>
 
-        {{#if error}}
         <p class="input__error">{{ error }}</p>
-        {{/if}}
       </fieldset>
       {{/if}}
   `;
@@ -69,9 +71,17 @@ export class Input extends Block<InputProps> {
 
       const root = this.element();
 
-      root?.classList.toggle('input_state_error', Boolean(error));
+      const errorClass = this.props.isProfile
+        ? 'profile-input_state_error'
+        : 'input_state_error';
 
-      const errorElement = root?.querySelector('.input__error');
+      const errorSelector = this.props.isProfile
+        ? '.profile-input__error'
+        : '.input__error';
+
+      root?.classList.toggle(errorClass, Boolean(error));
+
+      const errorElement = root?.querySelector(errorSelector);
 
       if (errorElement) {
         errorElement.textContent = error ?? '';
