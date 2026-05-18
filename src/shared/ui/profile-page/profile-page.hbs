@@ -1,0 +1,42 @@
+<main>
+  <div class="profile-page">
+    <nav class="profile-page__nav">
+      <a
+        href="#"
+        onclick="
+          window.history.back();
+          return false;
+        "
+        aria-label="Назад"
+        class="profile-page__back-link"
+      >
+        <span class="profile-page__link-wrapper">
+          <svg
+            width="13"
+            height="11"
+            viewBox="0 0 13 11"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="12.0245"
+              y="6.2998"
+              width="11"
+              height="1.6"
+              transform="rotate(-180 12.0245 6.2998)"
+              fill="white"
+            />
+            <path
+              d="M5.02451 10.4998L1.02451 5.49976L5.02451 0.499756"
+              stroke="white"
+              stroke-width="1.6"
+            />
+          </svg>
+        </span>
+      </a>
+    </nav>
+    <section class="profile-page__content">
+      {{> @partial-block}}
+    </section>
+  </div>
+</main>

@@ -1,0 +1,26 @@
+import Handlebars from 'handlebars';
+
+import formPage from '@/shared/ui/form-page/form-page.hbs?raw';
+import form from '@/shared/ui/form/form.hbs?raw';
+import errorPage from '@/shared/ui/error-page/error-page.hbs?raw';
+import profilePage from '@/shared/ui/profile-page/profile-page.hbs?raw';
+import avatarButton from '@/shared/ui/avatar-button/avatar-button.hbs?raw';
+import profileItem from '@/shared/ui/profile-item/profile-item.hbs?raw';
+import profileForm from '@/shared/ui/profile-form/profile-form.hbs?raw';
+
+import '@/shared/ui/form-page/form-page.scss';
+import '@/shared/ui/error-page/error-page.scss';
+import '@/shared/ui/profile-page/profile-page.scss';
+import '@/shared/ui/avatar-button/avatar-button.scss';
+import '@/shared/ui/profile-item/profile-item.scss';
+import '@/shared/ui/form/form.scss';
+
+export function registerPartials() {
+  Handlebars.registerPartial('form-page', formPage);
+  Handlebars.registerPartial('Form', form);
+  Handlebars.registerPartial('error-page', errorPage);
+  Handlebars.registerPartial('profile-page', profilePage);
+  Handlebars.registerPartial('avatar-button', avatarButton);
+  Handlebars.registerPartial('profile-item', profileItem);
+  Handlebars.registerPartial('profile-form', profileForm);
+}
