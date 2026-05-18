@@ -10,11 +10,9 @@ type BlockClass<P extends BlockProps = BlockProps> = {
 let uniqueId = 0;
 
 function registerComponent<P extends BlockProps>(Component: BlockClass<P>) {
-  console.log('REGISTER HELPER', Component.componentName);
   Handlebars.registerHelper(
     Component.componentName,
     function ({ hash, data }: HelperOptions) {
-      console.log('HELPER CALLED', Component.componentName);
       const dataAttribute = `data-component-hbs-id="${++uniqueId}"`;
       const component = new Component(hash as P);
 
@@ -26,7 +24,6 @@ function registerComponent<P extends BlockProps>(Component: BlockClass<P>) {
       (data.root.__children = data.root.__children || []).push({
         component,
         embed(node: DocumentFragment) {
-          console.log('EMBED', Component.componentName);
           const placeholder = node.querySelector(`[${dataAttribute}]`);
           if (!placeholder) {
             throw new Error(

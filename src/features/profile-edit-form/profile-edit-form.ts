@@ -25,7 +25,11 @@ export class ProfileEditForm extends Block<BlockProps> {
 
       const formData = new FormData(form);
 
-      const data = Object.fromEntries(formData.entries());
+      const data: Record<string, FormDataEntryValue> = {};
+
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
 
       const isValid = validateForm(form);
 
