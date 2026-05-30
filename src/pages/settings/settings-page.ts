@@ -1,7 +1,9 @@
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
-export class ProfilePage extends Block<BlockProps> {
+import './settings-page.scss';
+
+export class SettingsPage extends Block<BlockProps> {
   protected template = `{{#> profile-page}}
                           {{> avatar-button}}
                           <h1 class="profile__name heading-m">Иван</h1>
@@ -15,12 +17,12 @@ export class ProfilePage extends Block<BlockProps> {
                           </ul>
                           <ul class="profile__links">
                             <li class="profile__link-item">
-                              <a href="../profile-edit/profile-edit.html" class="link link_size_medium"
+                              <a href="/settings/profile" class="link link_size_medium"
                                 >Изменить данные</a
                               >
                             </li>
                             <li class="profile__link-item">
-                              <a href="../password-edit/password-edit.html" class="link link_size_medium"
+                              <a href="/settings/password" class="link link_size_medium"
                                 >Изменить пароль</a
                               >
                             </li>

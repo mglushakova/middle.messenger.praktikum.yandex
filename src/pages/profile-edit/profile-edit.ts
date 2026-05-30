@@ -1,6 +1,7 @@
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
+import './profile-edit.scss';
 export class ProfileEditPage extends Block<BlockProps> {
   protected template = `<div class="profile-edit">
                           {{#> profile-page}}

@@ -11,16 +11,6 @@ export class Router {
   private history = window.history;
   private _currentRoute: RouteInstance | null = null;
 
-  private static __instance: Router;
-
-  constructor() {
-    if (Router.__instance) {
-      return Router.__instance;
-    }
-
-    Router.__instance = this;
-  }
-
   use(pathname: string, onStart: RouteHandler, onLeave: RouteHandler): this {
     const route = new Route({
       pathname,

@@ -1,11 +1,13 @@
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
-interface ChatPageProps extends BlockProps {
+import './messenger-page.scss';
+
+interface MessengerPageProps extends BlockProps {
   isChatSelected: boolean;
 }
 
-export class ChatPage extends Block<ChatPageProps> {
+export class MessengerPage extends Block<MessengerPageProps> {
   constructor() {
     super({
       isChatSelected: false,

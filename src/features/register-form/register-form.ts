@@ -7,7 +7,7 @@ export class RegisterForm extends Block<BlockProps> {
   static componentName = 'RegisterForm';
 
   protected template = `
-    {{#> Form title="Регистрация" buttonText="Зарегистрироваться" linkText="Войти" linkHref="../login/login.html"}}
+    {{#> Form title="Регистрация" buttonText="Зарегистрироваться" linkText="Войти" linkHref="/login"}}
 
       {{{ Input type="text" placeholder="Почта" ref="email" name="email" label="Почта" id="email" className="form__fieldset" }}}
       {{{ Input type="text" placeholder="Логин" ref="login" name="login" label="Логин" id="login" className="form__fieldset" }}}

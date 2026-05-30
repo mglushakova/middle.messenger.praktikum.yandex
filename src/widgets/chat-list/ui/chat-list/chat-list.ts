@@ -7,7 +7,7 @@ export class ChatList extends Block<BlockProps> {
 
   protected template = `
     <div class="chat-list">
-      <a href="/profile" class="chat-list__link">
+      <a href="/settings" class="chat-list__link">
         Профиль
       </a>
 

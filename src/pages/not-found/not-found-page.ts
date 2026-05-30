@@ -5,7 +5,7 @@ export class NotFoundPage extends Block<BlockProps> {
   protected template = `{{#>error-page
                             title="404"
                             description="Не туда попали"
-                            linkHref="../chat-page/chat.html"
+                            linkHref="/messenger"
                             linkText="Назад к чатам"}}
                         {{/error-page}}`;
 }

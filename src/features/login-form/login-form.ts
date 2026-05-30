@@ -9,7 +9,7 @@ export class LoginForm extends Block<BlockProps> {
   static componentName = 'LoginForm';
 
   protected template = `
-    {{#> Form title="Вход" buttonText="Авторизоваться" linkText="Зарегистрироваться" linkHref="../register/register.html"}}
+    {{#> Form title="Вход" buttonText="Авторизоваться" linkText="Зарегистрироваться" linkHref="/sign-up"}}
 
       {{{ Input type="text" placeholder="Логин" ref="login" name="login" label="Логин" id="login" className="form__fieldset" }}}
 
