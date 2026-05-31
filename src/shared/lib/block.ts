@@ -10,15 +10,16 @@ export interface BlockProps {
   __refs?: Record<string, Element>;
 }
 export abstract class Block<Props extends BlockProps> {
-  protected abstract template: string;
+  protected template: string;
   protected props = {} as Props;
   private domElement: Element | null = null;
   protected events: EventListType = {};
   protected refs: Record<string, Element> = {};
   protected children: Block<BlockProps>[] = [];
 
-  constructor(props: Props = {} as Props) {
+  constructor(props: Props = {} as Props, template: string = '') {
     this.props = props;
+    this.template = template;
   }
 
   public element(): Element | null {

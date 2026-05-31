@@ -1,15 +1,23 @@
 import { Block } from '@/shared/lib/block';
 
-import { AuthController } from '@/features/login-form/controller';
-
 import type { BlockProps } from '@/shared/lib/block';
 import { validateForm } from '@/shared/lib/validation';
+import authController from '../auth-controller';
+import { connect } from '@/shared/store';
 
-export class LoginForm extends Block<BlockProps> {
+type LoginFormProps = BlockProps & {
+  error?: string | null;
+};
+
+const withAuthError = connect((state) => ({
+  error: state.auth?.error,
+}));
+
+export class LoginForm extends Block<LoginFormProps> {
   static componentName = 'LoginForm';
 
   protected template = `
-    {{#> Form title="Вход" buttonText="Авторизоваться" linkText="Зарегистрироваться" linkHref="/sign-up"}}
+    {{#> Form title="Вход" buttonText="Авторизоваться" linkText="Зарегистрироваться" linkHref="/sign-up" error=error }}
 
       {{{ Input type="text" placeholder="Логин" ref="login" name="login" label="Логин" id="login" className="form__fieldset" }}}
 
@@ -17,8 +25,6 @@ export class LoginForm extends Block<BlockProps> {
 
     {{/Form}}
   `;
-
-  private authController = new AuthController();
 
   protected events = {
     submit: (event: Event) => {
@@ -37,16 +43,19 @@ export class LoginForm extends Block<BlockProps> {
       const isValid = validateForm(form);
 
       if (!isValid) {
-        console.log('Форма невалидна');
+        authController.setError('Пожалуйста, исправьте ошибки в форме');
         return;
       }
 
-      console.log(data);
-
-      this.authController.login({
+      authController.signin({
         login: data.login.toString(),
         password: data.password.toString(),
       });
     },
+    input: () => {
+      authController.clearError();
+    },
   };
 }
+
+export default withAuthError(LoginForm);

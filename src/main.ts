@@ -1,6 +1,6 @@
 import '@/app';
 import '@/app/styles/main.scss';
-import router, { routes } from '@/app/router';
+import { routes, router } from '@/app/router';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';
 
 registerPartials();

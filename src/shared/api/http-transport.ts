@@ -3,6 +3,8 @@ import {
   type QueryData,
 } from '../lib/query-stringify/query-stringify';
 
+const API_URL = 'https://ya-praktikum.tech/api/v2';
+
 const METHODS = {
   GET: 'GET',
   POST: 'POST',
@@ -21,6 +23,12 @@ type Options = {
 };
 
 class HTTPTransport {
+  private endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
   get(url: string, options: Options = {}) {
     return this.request(
       url,
@@ -58,6 +66,7 @@ class HTTPTransport {
     options: Options = {},
     timeout = 5000,
   ): Promise<unknown> {
+    const fullUrl = `${API_URL}${this.endpoint}${url}`;
     const { headers = {}, method, data, responseType } = options;
 
     return new Promise((resolve, reject) => {
@@ -68,12 +77,14 @@ class HTTPTransport {
 
       const xhr = new XMLHttpRequest();
 
+      xhr.withCredentials = true;
+
       const isGet = method === METHODS.GET;
 
       const requestUrl =
         isGet && data && !(data instanceof FormData)
-          ? `${url}${queryStringify(data as QueryData)}`
-          : url;
+          ? `${fullUrl}${queryStringify(data as QueryData)}`
+          : fullUrl;
 
       xhr.open(method, requestUrl);
 

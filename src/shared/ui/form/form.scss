@@ -1,3 +1,5 @@
+@use '@/app/styles/base/variables' as *;
+
 .form {
   width: 100%;
   max-width: 340px;
@@ -52,4 +54,11 @@
 
 .form__button {
   width: 100%;
+}
+
+.form__error {
+  margin: 14px 0 0;
+  font-size: 8px;
+  line-height: 1;
+  color: $color-error;
 }

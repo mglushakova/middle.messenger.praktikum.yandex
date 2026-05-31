@@ -1,22 +1,24 @@
 import { merge } from '../lib/object/merge';
 import { set } from '../lib/object/set';
-import type { Indexed } from '../types/indexed';
+import type { AppState } from './types';
 
 type Listener = () => void;
 
-class Store {
-  private state: Indexed = {};
+class Store<State extends Record<string, unknown>> {
+  private state: State;
   private listeners: Set<Listener> = new Set();
 
-  public getState() {
+  constructor(initialState: State) {
+    this.state = initialState;
+  }
+
+  public getState(): State {
     return this.state;
   }
 
-  public setState(path: string, value: unknown) {
-    // Создаем новый объект состояния вместо изменения существующего
-    this.state = merge(this.state, set({}, path, value));
+  public setState(path: string, value: unknown): void {
+    this.state = merge(this.state, set({}, path, value)) as State;
 
-    // Уведомляем всех подписчиков об изменении
     this.emit();
   }
 
@@ -34,6 +36,12 @@ class Store {
   }
 }
 
-const store = new Store();
+const store = new Store<AppState>({
+  user: null,
+  auth: {
+    error: null,
+    isLoading: false,
+  },
+});
 
 export default store;

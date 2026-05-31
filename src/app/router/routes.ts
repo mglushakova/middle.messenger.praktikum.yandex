@@ -1,6 +1,5 @@
 import { ErrorPage } from '@/pages/error/error-page';
 import { LoginPage } from '@/pages/login/login-page';
-import { MainPage } from '@/pages/main/main-page';
 import { MessengerPage } from '@/pages/messenger/messenger-page';
 import { NotFoundPage } from '@/pages/not-found/not-found-page';
 import { PasswordEditPage } from '@/pages/password-edit/password-edit';
@@ -11,10 +10,6 @@ import { SignUpPage } from '@/pages/sign-up/sign-up-page';
 export const routes = [
   {
     path: '/',
-    page: MainPage,
-  },
-  {
-    path: '/login',
     page: LoginPage,
   },
   {
