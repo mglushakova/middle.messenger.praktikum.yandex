@@ -1,5 +1,14 @@
 import { store } from '@/shared/store';
-import { Route, type RouteHandler } from './Route';
+import { Route, type RouteAccess, type RouteHandler } from './Route';
+import type { Block, BlockProps } from '@/shared/lib/block';
+
+type PageConstructor = new (props?: BlockProps) => Block<BlockProps>;
+
+export type AppRoute = {
+  path: string;
+  page: PageConstructor;
+  access: RouteAccess;
+};
 
 export class Router {
   private routes: Route[] = [];
@@ -10,13 +19,13 @@ export class Router {
     pathname: string,
     onStart: RouteHandler,
     onLeave: RouteHandler,
-    isPublic?: boolean,
+    access: RouteAccess,
   ): this {
     const route = new Route({
       pathname,
       onStart,
       onLeave,
-      isPublic,
+      access,
     });
 
     this.routes.push(route);
@@ -36,8 +45,18 @@ export class Router {
     const route = this.getRoute(pathname);
     const isAuthorized = !!store.getState().user;
 
-    if (!route || (!route.isPublic && !isAuthorized)) {
+    if (!route) {
+      this.go('/404');
+      return;
+    }
+
+    if (route.access === 'private' && !isAuthorized) {
       this.go('/');
+      return;
+    }
+
+    if (route.access === 'guest' && isAuthorized) {
+      this.go('/messenger');
       return;
     }
 

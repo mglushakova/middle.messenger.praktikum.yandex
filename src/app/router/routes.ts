@@ -6,42 +6,47 @@ import { PasswordEditPage } from '@/pages/password-edit/password-edit';
 import { ProfileEditPage } from '@/pages/profile-edit/profile-edit';
 import { SettingsPage } from '@/pages/settings/settings-page';
 import { SignUpPage } from '@/pages/sign-up/sign-up-page';
+import type { AppRoute } from './Router';
 
-export const routes = [
+export const routes: AppRoute[] = [
   {
     path: '/',
     page: LoginPage,
-    isPublic: true,
+    access: 'guest',
   },
   {
     path: '/sign-up',
     page: SignUpPage,
-    isPublic: true,
+    access: 'guest',
   },
   {
     path: '/messenger',
     page: MessengerPage,
+    access: 'private',
   },
   {
     path: '/settings',
     page: SettingsPage,
+    access: 'private',
   },
   {
     path: '/404',
     page: NotFoundPage,
-    isPublic: true,
+    access: 'public',
   },
   {
     path: '/500',
     page: ErrorPage,
-    isPublic: true,
+    access: 'public',
   },
   {
     path: '/settings/password',
     page: PasswordEditPage,
+    access: 'private',
   },
   {
     path: '/settings/profile',
     page: ProfileEditPage,
+    access: 'private',
   },
 ];

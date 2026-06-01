@@ -42,6 +42,10 @@ const store = new Store<AppState>({
     error: null,
     isLoading: false,
   },
+  profile: {
+    error: null,
+    isLoading: false,
+  },
 });
 
 export default store;

@@ -1,27 +1,29 @@
 export type RouteHandler = () => void;
 
+export type RouteAccess = 'public' | 'guest' | 'private';
+
 type RouteConfig = {
   pathname: string;
   onStart: RouteHandler;
   onLeave: RouteHandler;
-  isPublic?: boolean;
+  access: RouteAccess;
 };
 
 export class Route {
   private _pathname: string;
   private _onStart: RouteHandler;
   private _onLeave: RouteHandler;
-  private _isPublic: boolean;
+  private _access: RouteAccess;
 
   constructor(config: RouteConfig) {
     this._pathname = config.pathname;
     this._onStart = config.onStart;
     this._onLeave = config.onLeave;
-    this._isPublic = config.isPublic || false;
+    this._access = config.access;
   }
 
-  get isPublic(): boolean {
-    return this._isPublic;
+  get access(): RouteAccess {
+    return this._access;
   }
 
   match(pathname: string): boolean {

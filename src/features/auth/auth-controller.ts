@@ -9,6 +9,18 @@ import { getErrorMessage } from '@/shared/api/get-error';
 import { store } from '@/shared/store';
 
 class AuthController {
+  async init() {
+    try {
+      const user = await authAPI.getUser();
+
+      store.setState('user', user);
+    } catch {
+      store.setState('user', null);
+    } finally {
+      store.setState('auth.isInitialized', true);
+    }
+  }
+
   async signin(data: SignInRequest) {
     try {
       await authAPI.signin(data);

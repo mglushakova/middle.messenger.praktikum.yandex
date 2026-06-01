@@ -2,7 +2,7 @@ import { BaseAPI } from '../base-api';
 import HTTPTransport from '../http-transport';
 import type { SignInRequest, SignUpRequest } from './types';
 
-export class AuthAPI extends BaseAPI {
+class AuthAPI extends BaseAPI {
   private http = new HTTPTransport('/auth');
 
   signup(data: SignUpRequest) {
@@ -25,3 +25,7 @@ export class AuthAPI extends BaseAPI {
     return this.http.post('/logout');
   }
 }
+
+const authAPI = new AuthAPI();
+
+export default authAPI;

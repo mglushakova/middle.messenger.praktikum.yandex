@@ -1,6 +1,2 @@
-import { AuthAPI } from './auth-api';
-
-const authAPI = new AuthAPI();
-
-export { authAPI };
+export { default as authAPI } from './auth-api';
 export type { SignInRequest, SignUpRequest } from './types';

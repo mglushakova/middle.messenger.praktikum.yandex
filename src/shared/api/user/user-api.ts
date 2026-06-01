@@ -1,27 +1,39 @@
 import { BaseAPI } from '../base-api';
 import HTTPTransport from '../http-transport';
-// import type { SignInRequest, SignUpRequest } from './types';
+import type {
+  UserRequest,
+  ChangePasswordRequest,
+  FindUserRequest,
+} from './types';
 
-export class UserAPI extends BaseAPI {
-  private http = new HTTPTransport('/api/v2/auth');
+class UserAPI extends BaseAPI {
+  private http = new HTTPTransport('/user');
 
-  // signup(data: SignUpRequest) {
-  //   return this.http.post('/signup', {
-  //     data,
-  //   });
-  // }
+  changeProfile(data: UserRequest) {
+    return this.http.put('/profile', {
+      data,
+    });
+  }
 
-  // signin(data: SignInRequest) {
-  //   return this.http.post('/signin', {
-  //     data,
-  //   });
-  // }
+  changeAvatar(data: FormData) {
+    return this.http.put('/profile/avatar', {
+      data,
+    });
+  }
 
-  // getUser() {
-  //   return this.http.get('/user');
-  // }
+  changePassword(data: ChangePasswordRequest) {
+    return this.http.put('/password', {
+      data,
+    });
+  }
 
-  // logout() {
-  //   return this.http.post('/logout');
-  // }
+  getUserByLogin(data: FindUserRequest) {
+    return this.http.post('/search', {
+      data,
+    });
+  }
 }
+
+const userAPI = new UserAPI();
+
+export default userAPI;
