@@ -1,21 +1,22 @@
+import { store } from '@/shared/store';
 import { Route, type RouteHandler } from './Route';
 
-type RouteInstance = {
-  match(pathname: string): boolean;
-  render(): void;
-  leave(): void;
-};
-
 export class Router {
-  private routes: RouteInstance[] = [];
+  private routes: Route[] = [];
   private history = window.history;
-  private _currentRoute: RouteInstance | null = null;
+  private _currentRoute: Route | null = null;
 
-  use(pathname: string, onStart: RouteHandler, onLeave: RouteHandler): this {
+  use(
+    pathname: string,
+    onStart: RouteHandler,
+    onLeave: RouteHandler,
+    isPublic?: boolean,
+  ): this {
     const route = new Route({
       pathname,
       onStart,
       onLeave,
+      isPublic,
     });
 
     this.routes.push(route);
@@ -33,8 +34,12 @@ export class Router {
 
   private _onRoute(pathname: string): void {
     const route = this.getRoute(pathname);
+    const isAuthorized = !!store.getState().user;
 
-    if (!route) return;
+    if (!route || (!route.isPublic && !isAuthorized)) {
+      this.go('/');
+      return;
+    }
 
     if (this._currentRoute) {
       this._currentRoute.leave();
@@ -50,7 +55,7 @@ export class Router {
     this._onRoute(pathname);
   }
 
-  getRoute(pathname: string): RouteInstance | undefined {
+  getRoute(pathname: string): Route | undefined {
     return this.routes.find((r) => r.match(pathname));
   }
 }

@@ -11,10 +11,12 @@ export const routes = [
   {
     path: '/',
     page: LoginPage,
+    isPublic: true,
   },
   {
     path: '/sign-up',
     page: SignUpPage,
+    isPublic: true,
   },
   {
     path: '/messenger',
@@ -27,10 +29,12 @@ export const routes = [
   {
     path: '/404',
     page: NotFoundPage,
+    isPublic: true,
   },
   {
     path: '/500',
     page: ErrorPage,
+    isPublic: true,
   },
   {
     path: '/settings/password',
