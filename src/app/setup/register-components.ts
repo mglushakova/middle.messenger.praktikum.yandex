@@ -10,6 +10,7 @@ import { ChatWindow } from '@/widgets/chat-window';
 import { ChatItem } from '@/entities/chat';
 import { MessageInput } from '@/features/send-message';
 import { LoginForm } from '@/features/auth';
+import { LogoutLink } from '@/features/auth';
 
 registerComponent(Input);
 registerComponent(Button);
@@ -21,3 +22,4 @@ registerComponent(ChatList);
 registerComponent(ChatWindow);
 registerComponent(ChatItem);
 registerComponent(MessageInput);
+registerComponent(LogoutLink);

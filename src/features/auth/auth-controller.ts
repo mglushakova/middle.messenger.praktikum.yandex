@@ -46,7 +46,7 @@ class AuthController {
       store.setState('user', null);
       store.setState('auth.error', null);
 
-      router.go('/login');
+      router.go('/');
     } catch (error) {
       store.setState('auth.error', getErrorMessage(error));
     }

@@ -3,13 +3,16 @@ import type { Block, BlockProps } from '../lib/block';
 import { isEqual } from '../lib/object/is-equal';
 import store from './Store';
 
-type BlockConstructor<P extends BlockProps> = new (props: P) => Block<P>;
+type BlockConstructor<P extends BlockProps> = {
+  componentName: string;
+  new (props: P): Block<P>;
+};
 
 export function connect<StateProps extends Record<string, unknown>>(
   mapStateToProps: (state: AppState) => StateProps,
 ) {
   return function <P extends BlockProps>(Component: BlockConstructor<P>) {
-    return class extends Component {
+    class ConnectedComponent extends Component {
       constructor(props: P) {
         let state = mapStateToProps(store.getState());
 
@@ -28,6 +31,10 @@ export function connect<StateProps extends Record<string, unknown>>(
           state = newState;
         });
       }
-    };
+    }
+
+    ConnectedComponent.componentName = Component.componentName;
+
+    return ConnectedComponent;
   };
 }

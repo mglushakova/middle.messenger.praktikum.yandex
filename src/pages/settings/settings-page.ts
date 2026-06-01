@@ -27,9 +27,7 @@ export class SettingsPage extends Block<BlockProps> {
                               >
                             </li>
                             <li class="profile__link-item">
-                              <a href="../exit.html" class="link link_size_medium link_type_danger"
-                                >Выйти</a
-                              >
+                              {{{ LogoutLink }}}
                             </li>
                           </ul>
                           {{/profile-page}}`;
