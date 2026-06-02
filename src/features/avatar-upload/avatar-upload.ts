@@ -23,8 +23,8 @@ export class AvatarUpload extends Block<AvatarUploadProps> {
   static componentName = 'AvatarUpload';
 
   protected template = `
-    <form>
-      <label class="avatar">
+    <form class="avatar">
+      <label class="avatar__label">
       {{#if avatarUrl}}
         <img
           src="{{avatarUrl}}"
@@ -50,6 +50,7 @@ export class AvatarUpload extends Block<AvatarUploadProps> {
         <span class="avatar__copy">Поменять аватар</span>
         <input type="file" hidden />
       </label>
+      <span class="avatar__error">{{ error }}</span>
     </form>
   `;
 
