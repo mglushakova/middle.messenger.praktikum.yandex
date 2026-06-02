@@ -11,7 +11,7 @@ type ProfileEditFormProps = BlockProps & {
   error?: string | null;
 };
 
-const withProfile = connect((state) => {
+const withUserData = connect((state) => {
   return {
     user: state.user,
     error: state.profile?.error,
@@ -35,6 +35,8 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
   protected events = {
     submit: (event: Event) => {
       event.preventDefault();
+
+      profileEditController.clearError();
 
       const form = event.target as HTMLFormElement;
 
@@ -62,10 +64,7 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
         phone: data.phone.toString(),
       });
     },
-    input: () => {
-      profileEditController.clearError();
-    },
   };
 }
 
-export default withProfile(ProfileEditForm);
+export default withUserData(ProfileEditForm);

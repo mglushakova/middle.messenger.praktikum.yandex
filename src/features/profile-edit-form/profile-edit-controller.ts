@@ -1,6 +1,10 @@
 import { authAPI } from '@/shared/api/auth';
 import { getErrorMessage } from '@/shared/api/get-error';
-import { userAPI, type UserRequest } from '@/shared/api/user';
+import {
+  userAPI,
+  type ChangePasswordRequest,
+  type UserRequest,
+} from '@/shared/api/user';
 import { store } from '@/shared/store';
 
 class ProfileEditController {
@@ -10,9 +14,15 @@ class ProfileEditController {
 
       const user = await authAPI.getUser();
 
-      console.log('user', user);
-
       store.setState('user', user);
+    } catch (error) {
+      store.setState('profile.error', getErrorMessage(error));
+    }
+  }
+
+  async changePassword(data: ChangePasswordRequest) {
+    try {
+      await userAPI.changePassword(data);
     } catch (error) {
       store.setState('profile.error', getErrorMessage(error));
     }

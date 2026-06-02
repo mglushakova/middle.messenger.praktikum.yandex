@@ -2,13 +2,37 @@ import { Block } from '@/shared/lib/block';
 
 import type { BlockProps } from '@/shared/lib/block';
 import { validateForm } from '@/shared/lib/validation';
+import { connect } from '@/shared/store';
+import { profileEditController } from '../profile-edit-form';
 
-export class PasswordEditForm extends Block<BlockProps> {
+type PasswordEditFormProps = BlockProps & {
+  error?: string | null;
+};
+
+const withError = connect((state) => {
+  return {
+    error: state.profile?.error,
+  };
+});
+
+function passwordsMatch(form: HTMLFormElement): boolean {
+  const newPassword = (
+    form.elements.namedItem('new_password') as HTMLInputElement
+  ).value;
+
+  const confirmPassword = (
+    form.elements.namedItem('new_password-confirm') as HTMLInputElement
+  ).value;
+
+  return newPassword === confirmPassword;
+}
+
+export class PasswordEditForm extends Block<PasswordEditFormProps> {
   static componentName = 'PasswordEditForm';
 
   protected template = `
-    {{#> Form buttonText="Сохранить" isProfile=true }}
-      {{{ Input type="password" isProfile=true ref="password" name="password" label="Старый пароль" id="password" className="profile-form__fieldset" value="testpassword" }}}
+    {{#> Form buttonText="Сохранить" isProfile=true error=error }}
+      {{{ Input type="password" isProfile=true ref="password" name="password" label="Старый пароль" id="password" className="profile-form__fieldset" }}}
       {{{ Input type="password" isProfile=true ref="new_password" name="new_password" label="Новый пароль" id="new_password" className="profile-form__fieldset" }}}
       {{{ Input type="password" isProfile=true ref="new_password-confirm" name="new_password-confirm" label="Повторите новый пароль" id="new_password-confirm" className="profile-form__fieldset" }}}
     {{/Form}}
@@ -17,6 +41,8 @@ export class PasswordEditForm extends Block<BlockProps> {
   protected events = {
     submit: (event: Event) => {
       event.preventDefault();
+
+      profileEditController.clearError();
 
       const form = event.target as HTMLFormElement;
 
@@ -30,12 +56,22 @@ export class PasswordEditForm extends Block<BlockProps> {
 
       const isValid = validateForm(form);
 
-      if (!isValid) {
-        console.log('Форма невалидна');
+      if (!passwordsMatch(form)) {
+        profileEditController.setError('Новые пароли не совпадают');
         return;
       }
 
-      console.log(data);
+      if (!isValid) {
+        profileEditController.setError('Пожалуйста, исправьте ошибки в форме');
+        return;
+      }
+
+      profileEditController.changePassword({
+        oldPassword: data.password.toString(),
+        newPassword: data.new_password.toString(),
+      });
     },
   };
 }
+
+export default withError(PasswordEditForm);
