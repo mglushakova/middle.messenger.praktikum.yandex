@@ -10,6 +10,8 @@ class ProfileEditController {
 
       const user = await authAPI.getUser();
 
+      console.log('user', user);
+
       store.setState('user', user);
     } catch (error) {
       store.setState('profile.error', getErrorMessage(error));

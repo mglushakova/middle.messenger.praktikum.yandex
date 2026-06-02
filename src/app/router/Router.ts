@@ -2,7 +2,9 @@ import { store } from '@/shared/store';
 import { Route, type RouteAccess, type RouteHandler } from './Route';
 import type { Block, BlockProps } from '@/shared/lib/block';
 
-type PageConstructor = new (props?: BlockProps) => Block<BlockProps>;
+type PageConstructor = {
+  new (...args: never[]): Block<BlockProps>;
+};
 
 export type AppRoute = {
   path: string;

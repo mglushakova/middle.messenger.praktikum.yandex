@@ -14,7 +14,7 @@ type ProfileEditFormProps = BlockProps & {
 const withProfile = connect((state) => {
   return {
     user: state.user,
-    error: state.auth?.error,
+    error: state.profile?.error,
   };
 });
 
@@ -22,10 +22,10 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
   static componentName = 'ProfileEditForm';
 
   protected template = `
-    {{#> Form buttonText="Сохранить" isProfile=true }}
+    {{#> Form buttonText="Сохранить" isProfile=true error=error }}
       {{{ Input type="text" isProfile=true ref="email" name="email" label="Почта" id="email" className="profile-form__fieldset" value=user.email }}}
       {{{ Input type="text" isProfile=true ref="login" name="login" label="Логин" id="login" className="profile-form__fieldset" value=user.login }}}
-      {{{ Input type="text" isProfile=true ref="first_name" name="first_name" label="Имя" id="first_name" className="profile-form__fieldset" value=first_name }}}
+      {{{ Input type="text" isProfile=true ref="first_name" name="first_name" label="Имя" id="first_name" className="profile-form__fieldset" value=user.first_name }}}
       {{{ Input type="text" isProfile=true ref="second_name" name="second_name" label="Фамилия" id="second_name" className="profile-form__fieldset" value=user.second_name }}}
       {{{ Input type="text" isProfile=true ref="chat-name" name="display_name" label="Имя в чате" id="chat-name" className="profile-form__fieldset" value=user.display_name }}}
       {{{ Input type="text" isProfile=true ref="phone" name="phone" label="Телефон" id="phone" className="profile-form__fieldset" value=user.phone }}}
@@ -61,6 +61,9 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
         email: data.email.toString(),
         phone: data.phone.toString(),
       });
+    },
+    input: () => {
+      profileEditController.clearError();
     },
   };
 }

@@ -4,7 +4,7 @@ import { MessengerPage } from '@/pages/messenger/messenger-page';
 import { NotFoundPage } from '@/pages/not-found/not-found-page';
 import { PasswordEditPage } from '@/pages/password-edit/password-edit';
 import { ProfileEditPage } from '@/pages/profile-edit/profile-edit';
-import { SettingsPage } from '@/pages/settings/settings-page';
+import { default as SettingsPage } from '@/pages/settings/settings-page';
 import { SignUpPage } from '@/pages/sign-up/sign-up-page';
 import type { AppRoute } from './Router';
 

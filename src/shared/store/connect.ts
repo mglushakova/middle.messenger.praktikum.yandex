@@ -5,7 +5,7 @@ import store from './Store';
 
 type BlockConstructor<P extends BlockProps> = {
   componentName: string;
-  new (props: P): Block<P>;
+  new (props?: P): Block<P>;
 };
 
 export function connect<StateProps extends Record<string, unknown>>(
