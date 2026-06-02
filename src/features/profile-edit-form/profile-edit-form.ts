@@ -3,8 +3,7 @@ import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 import { validateForm } from '@/shared/lib/validation';
 import { connect } from '@/shared/store';
-import profileEditController from './profile-edit-controller';
-import type { User } from '@/entities/user';
+import { userController, type User } from '@/entities/user';
 
 type ProfileEditFormProps = BlockProps & {
   user: User | null;
@@ -36,7 +35,7 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
     submit: (event: Event) => {
       event.preventDefault();
 
-      profileEditController.clearError();
+      userController.clearError();
 
       const form = event.target as HTMLFormElement;
 
@@ -51,11 +50,11 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
       const isValid = validateForm(form);
 
       if (!isValid) {
-        profileEditController.setError('Пожалуйста, исправьте ошибки в форме');
+        userController.setError('Пожалуйста, исправьте ошибки в форме');
         return;
       }
 
-      profileEditController.changeProfile({
+      userController.changeProfile({
         first_name: data.first_name.toString(),
         second_name: data.second_name.toString(),
         display_name: data.display_name.toString(),

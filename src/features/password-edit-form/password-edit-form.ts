@@ -1,9 +1,9 @@
+import { userController } from '@/entities/user';
 import { Block } from '@/shared/lib/block';
 
 import type { BlockProps } from '@/shared/lib/block';
 import { validateForm } from '@/shared/lib/validation';
 import { connect } from '@/shared/store';
-import { profileEditController } from '../profile-edit-form';
 
 type PasswordEditFormProps = BlockProps & {
   error?: string | null;
@@ -42,7 +42,7 @@ export class PasswordEditForm extends Block<PasswordEditFormProps> {
     submit: (event: Event) => {
       event.preventDefault();
 
-      profileEditController.clearError();
+      userController.clearError();
 
       const form = event.target as HTMLFormElement;
 
@@ -57,16 +57,16 @@ export class PasswordEditForm extends Block<PasswordEditFormProps> {
       const isValid = validateForm(form);
 
       if (!passwordsMatch(form)) {
-        profileEditController.setError('Новые пароли не совпадают');
+        userController.setError('Новые пароли не совпадают');
         return;
       }
 
       if (!isValid) {
-        profileEditController.setError('Пожалуйста, исправьте ошибки в форме');
+        userController.setError('Пожалуйста, исправьте ошибки в форме');
         return;
       }
 
-      profileEditController.changePassword({
+      userController.changePassword({
         oldPassword: data.password.toString(),
         newPassword: data.new_password.toString(),
       });

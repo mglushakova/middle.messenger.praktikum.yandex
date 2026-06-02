@@ -11,6 +11,7 @@ import { ChatItem } from '@/entities/chat';
 import { MessageInput } from '@/features/send-message';
 import { LoginForm } from '@/features/auth';
 import { LogoutLink } from '@/features/auth';
+import { AvatarUpload } from '@/features/avatar-upload';
 
 registerComponent(Input);
 registerComponent(Button);
@@ -23,3 +24,4 @@ registerComponent(ChatWindow);
 registerComponent(ChatItem);
 registerComponent(MessageInput);
 registerComponent(LogoutLink);
+registerComponent(AvatarUpload);

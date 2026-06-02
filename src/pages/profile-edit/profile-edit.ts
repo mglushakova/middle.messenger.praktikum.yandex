@@ -5,7 +5,7 @@ import './profile-edit.scss';
 export class ProfileEditPage extends Block<BlockProps> {
   protected template = `<div class="profile-edit">
                           {{#> profile-page}}
-                          {{> avatar-button}}
+                          {{{ AvatarUpload }}}
                           <div class="profile-edit__form">
                             {{{ ProfileEditForm }}}
                           </div>

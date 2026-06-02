@@ -17,7 +17,7 @@ class SettingsPage extends Block<SettingsPageProps> {
   static componentName = 'SettingsPage';
 
   protected template = `{{#> profile-page}}
-                          {{> avatar-button}}
+                          {{{ AvatarUpload }}}
                           <h1 class="profile__name heading-m">Иван</h1>
                           <ul class="profile__list">
                             {{> profile-item category="Почта" value=user.email}}
