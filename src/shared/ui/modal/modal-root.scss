@@ -1,0 +1,14 @@
+.modal-root__overlay {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background: rgb(0 0 0 / 40%);
+}
+
+.modal-root__overlay_visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

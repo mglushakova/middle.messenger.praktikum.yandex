@@ -46,6 +46,17 @@ const store = new Store<AppState>({
     error: null,
     isLoading: false,
   },
+  chats: {
+    items: [],
+    error: null,
+    isLoading: false,
+  },
+  ui: {
+    modal: {
+      name: null,
+      props: {},
+    },
+  },
 });
 
 export default store;

@@ -7,7 +7,7 @@ import { ProfileEditForm } from '@/features/profile-edit-form';
 import { PasswordEditForm } from '@/features/password-edit-form';
 import { ChatList } from '@/widgets/chat-list';
 import { ChatWindow } from '@/widgets/chat-window';
-import { ChatItem } from '@/entities/chat';
+import { ChatItem } from '@/entities/chats';
 import { MessageInput } from '@/features/send-message';
 import { LoginForm } from '@/features/auth';
 import { LogoutLink } from '@/features/auth';

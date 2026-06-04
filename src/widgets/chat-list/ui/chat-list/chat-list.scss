@@ -8,6 +8,13 @@
   flex-direction: column;
 }
 
+.chat-list__top {
+  margin-bottom: 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .chat-list__items {
   margin: 0;
   padding: 0;
@@ -17,9 +24,23 @@
   -ms-overflow-style: none;
 }
 
+.chat-list__create-btn {
+  margin: 0 0 0 10px;
+  padding: 0;
+  display: inline;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .chat-list__link {
+  margin: 0 10px 0 auto;
+}
+
+.chat-list__link,
+.chat-list__create-btn {
   position: relative;
-  margin: 0 10px 23px auto;
   display: flex;
   align-items: center;
   gap: 8px;

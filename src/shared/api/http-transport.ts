@@ -14,10 +14,12 @@ const METHODS = {
 
 type Method = (typeof METHODS)[keyof typeof METHODS];
 
+export type BodyData = object | FormData | string | undefined;
+
 type Options = {
   headers?: Record<string, string>;
   method?: Method;
-  data?: QueryData | FormData | string;
+  data?: BodyData;
   timeout?: number;
   responseType?: XMLHttpRequestResponseType;
 };
@@ -153,17 +155,24 @@ class HTTPTransport {
 
       if (isGet || !data) {
         xhr.send();
-      } else if (data instanceof FormData) {
+        return;
+      }
+
+      if (data instanceof FormData) {
         xhr.send(data);
-      } else if (typeof data === 'object') {
+        return;
+      }
+
+      if (typeof data === 'object') {
         if (!headers['Content-Type']) {
           xhr.setRequestHeader('Content-Type', 'application/json');
         }
 
         xhr.send(JSON.stringify(data));
-      } else {
-        xhr.send(data);
+        return;
       }
+
+      xhr.send(data);
     });
   }
 }

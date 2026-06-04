@@ -32,7 +32,7 @@ class AuthController {
 
       router.go('/messenger');
     } catch (error) {
-      store.setState('authError', getErrorMessage(error));
+      store.setState('auth.error', getErrorMessage(error));
     }
   }
 
@@ -43,7 +43,7 @@ class AuthController {
       const user = (await authAPI.getUser()) as User;
 
       store.setState('user', user);
-      store.setState('authError', null);
+      store.setState('auth.error', null);
 
       router.go('/messenger');
     } catch (error) {

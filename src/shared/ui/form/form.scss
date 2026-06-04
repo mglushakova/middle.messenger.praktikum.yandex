@@ -31,6 +31,23 @@
   }
 }
 
+.form_type_modal {
+  min-height: unset;
+  gap: unset;
+
+  .form__title {
+    font-size: 15px;
+  }
+
+  .form__bottom {
+    margin-top: 0;
+  }
+
+  .form__button {
+    margin-top: 0;
+  }
+}
+
 .form__fieldset {
   width: 100%;
 

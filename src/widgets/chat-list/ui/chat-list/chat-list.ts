@@ -1,15 +1,28 @@
 import { Block, type BlockProps } from '@/shared/lib/block';
-
 import './chat-list.scss';
+import type { Chat } from '@/entities/chats/types';
+import { connect } from '@/shared/store';
+import { openModal } from '@/shared/lib/modal';
 
-export class ChatList extends Block<BlockProps> {
+type ChatListProps = BlockProps & {
+  chats: Chat[];
+};
+
+const withChats = connect((state) => ({
+  chats: state.chats.items,
+}));
+
+export class ChatList extends Block<ChatListProps> {
   static componentName = 'ChatList';
 
   protected template = `
     <div class="chat-list">
-      <a href="/settings" class="chat-list__link">
-        Профиль
-      </a>
+      <div class="chat-list__top">
+        <button type="button" class="chat-list__create-btn">Создать новый чат</button>
+        <a href="/settings" class="chat-list__link">
+          Профиль
+        </a>
+      </div>
 
       <input
         type="text"
@@ -18,18 +31,26 @@ export class ChatList extends Block<BlockProps> {
       />
 
       <ul class="chat-list__items">
-        {{{ ChatItem
-          name="Вадим"
-          lastMessage="Привет"
-          time="10:49"
-        }}}
-
-        {{{ ChatItem
-          name="Киноклуб"
-          lastMessage="Вы: стикер"
-          time="12:00"
-        }}}
+        {{#each chats}}
+          {{{ ChatItem
+              name=this.title
+              lastMessage=this.content
+              time=this.time
+            }}}
+        {{/each}}
       </ul>
     </div>
   `;
+
+  protected events = {
+    click: (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      if (target.classList.contains('chat-list__create-btn')) {
+        openModal('createChat');
+      }
+    },
+  };
 }
+
+export default withChats(ChatList);

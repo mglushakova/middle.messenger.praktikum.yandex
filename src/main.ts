@@ -3,6 +3,8 @@ import '@/app/styles/main.scss';
 import { routes, router } from '@/app/router';
 import { registerPartials } from '@/shared/lib/handlebars/registerPartials';
 import { authController } from './features/auth';
+import { store } from './shared/store';
+import { ModalRoot } from './shared/ui/modal';
 
 registerPartials();
 
@@ -45,3 +47,13 @@ routes.forEach(({ path, page: Page, access }) => {
 await authController.init();
 
 router.start();
+
+const modalRoot = document.querySelector('#modal-root');
+
+if (modalRoot) {
+  modalRoot.appendChild(
+    new ModalRoot({
+      modal: store.getState().ui.modal,
+    }).element()!,
+  );
+}
