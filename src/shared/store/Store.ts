@@ -4,6 +4,31 @@ import type { AppState } from './types';
 
 type Listener = () => void;
 
+const initialState: AppState = {
+  user: null,
+  auth: {
+    error: null,
+    isLoading: false,
+  },
+  profile: {
+    error: null,
+    isLoading: false,
+  },
+  chats: {
+    items: [],
+    selectedChat: null,
+    error: null,
+    isLoading: false,
+    isLoaded: false,
+  },
+  ui: {
+    modal: {
+      name: null,
+      props: {},
+    },
+  },
+};
+
 class Store<State extends Record<string, unknown>> {
   private state: State;
   private listeners: Set<Listener> = new Set();
@@ -34,31 +59,13 @@ class Store<State extends Record<string, unknown>> {
   private emit() {
     this.listeners.forEach((listener) => listener());
   }
+
+  public resetState() {
+    this.state = merge({}, initialState) as State;
+    this.emit();
+  }
 }
 
-const store = new Store<AppState>({
-  user: null,
-  auth: {
-    error: null,
-    isLoading: false,
-  },
-  profile: {
-    error: null,
-    isLoading: false,
-  },
-  chats: {
-    items: [],
-    selectedChat: null,
-    error: null,
-    isLoading: false,
-    isLoaded: false,
-  },
-  ui: {
-    modal: {
-      name: null,
-      props: {},
-    },
-  },
-});
+const store = new Store<AppState>(initialState);
 
 export default store;

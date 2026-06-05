@@ -55,8 +55,7 @@ class AuthController {
     try {
       await authAPI.logout();
 
-      store.setState('user', null);
-      store.setState('auth.error', null);
+      store.resetState();
 
       router.go('/');
     } catch (error) {
