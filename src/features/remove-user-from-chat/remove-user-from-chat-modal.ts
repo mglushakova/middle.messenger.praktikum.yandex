@@ -1,20 +1,15 @@
 import { chatsController } from '@/entities/chats';
-import type { User } from '@/entities/user';
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 import { closeModal } from '@/shared/lib/modal';
 import { store } from '@/shared/store';
 import './remove-user-from-chat-modal.scss';
 
-interface RemoveUserFromChatProps extends BlockProps {
-  users: User[];
-}
-
-export class RemoveUserFromChatModal extends Block<RemoveUserFromChatProps> {
+export class RemoveUserFromChatModal extends Block<BlockProps> {
   static componentName = 'RemoveUserFromChat';
 
-  constructor(props: RemoveUserFromChatProps) {
-    super(props);
+  constructor(props?: BlockProps) {
+    super(props ?? {});
   }
 
   protected template = `
