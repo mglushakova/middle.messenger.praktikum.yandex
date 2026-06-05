@@ -12,6 +12,8 @@ const METHODS = {
   DELETE: 'DELETE',
 } as const;
 
+type HTTPMethod = <R = unknown>(url: string, options?: Options) => Promise<R>;
+
 type Method = (typeof METHODS)[keyof typeof METHODS];
 
 export type BodyData = object | FormData | string | undefined;
@@ -31,43 +33,35 @@ class HTTPTransport {
     this.endpoint = endpoint;
   }
 
-  get(url: string, options: Options = {}) {
-    return this.request(
-      url,
-      { ...options, method: METHODS.GET },
-      options.timeout,
-    );
-  }
+  get: HTTPMethod = (url, options = {}) =>
+    this.request(url, {
+      ...options,
+      method: METHODS.GET,
+    });
 
-  post(url: string, options: Options = {}) {
-    return this.request(
-      url,
-      { ...options, method: METHODS.POST },
-      options.timeout,
-    );
-  }
+  post: HTTPMethod = (url, options = {}) =>
+    this.request(url, {
+      ...options,
+      method: METHODS.POST,
+    });
 
-  put(url: string, options: Options = {}) {
-    return this.request(
-      url,
-      { ...options, method: METHODS.PUT },
-      options.timeout,
-    );
-  }
+  put: HTTPMethod = (url, options = {}) =>
+    this.request(url, {
+      ...options,
+      method: METHODS.PUT,
+    });
 
-  delete(url: string, options: Options = {}) {
-    return this.request(
-      url,
-      { ...options, method: METHODS.DELETE },
-      options.timeout,
-    );
-  }
+  delete: HTTPMethod = (url, options = {}) =>
+    this.request(url, {
+      ...options,
+      method: METHODS.DELETE,
+    });
 
-  request(
+  request<R = unknown>(
     url: string,
     options: Options = {},
     timeout = 5000,
-  ): Promise<unknown> {
+  ): Promise<R> {
     const fullUrl = `${API_URL}${this.endpoint}${url}`;
     const { headers = {}, method, data, responseType } = options;
 
@@ -118,7 +112,7 @@ class HTTPTransport {
             }
           }
 
-          resolve(response);
+          resolve(response as R);
         } else {
           reject({
             status: xhr.status,

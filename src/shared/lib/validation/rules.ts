@@ -1,9 +1,9 @@
 export const validationRules = {
   login: /^(?!\d+$)[a-zA-Z0-9_-]{3,20}$/,
 
-  password: /^(?=.*[A-Z])(?=.*\d).{8,40}$/,
+  password: /^(?=.*[A-Z])(?=.*\d).{7,39}$/,
 
-  new_password: /^(?=.*[A-Z])(?=.*\d).{8,40}$/,
+  new_password: /^(?=.*[A-Z])(?=.*\d).{7,39}$/,
 
   first_name: /^[A-ZА-ЯЁ][a-zа-яё-]*$/,
 
