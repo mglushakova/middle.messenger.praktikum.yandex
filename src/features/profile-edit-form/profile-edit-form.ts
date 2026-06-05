@@ -66,4 +66,4 @@ export class ProfileEditForm extends Block<ProfileEditFormProps> {
   };
 }
 
-export default withUserData(ProfileEditForm);
+export const profileEditForm = withUserData(ProfileEditForm);

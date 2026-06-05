@@ -71,6 +71,4 @@ export class ChatsController {
   }
 }
 
-const chatsController = new ChatsController();
-
-export default chatsController;
+export const chatsController = new ChatsController();

@@ -1,1 +1,1 @@
-export { default as AvatarUpload } from './avatar-upload';
+export { avatarUpload } from './avatar-upload';

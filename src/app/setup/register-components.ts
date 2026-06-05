@@ -11,7 +11,7 @@ import { ChatItem } from '@/entities/chats';
 import { MessageInput } from '@/features/send-message';
 import { LoginForm } from '@/features/auth';
 import { LogoutLink } from '@/features/auth';
-import { AvatarUpload } from '@/features/avatar-upload';
+import { avatarUpload as AvatarUpload } from '@/features/avatar-upload';
 import { ChatMenu } from '@/entities/chats';
 
 registerComponent(Input);

@@ -2,7 +2,7 @@ import { Block } from '@/shared/lib/block';
 
 import type { BlockProps } from '@/shared/lib/block';
 import { validateForm } from '@/shared/lib/validation';
-import authController from '../auth-controller';
+import { authController } from '../auth-controller';
 import { connect } from '@/shared/store';
 
 type LoginFormProps = BlockProps & {
@@ -58,4 +58,4 @@ export class LoginForm extends Block<LoginFormProps> {
   };
 }
 
-export default withAuthError(LoginForm);
+export const loginForm = withAuthError(LoginForm);

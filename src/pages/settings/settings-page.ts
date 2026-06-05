@@ -45,4 +45,4 @@ class SettingsPage extends Block<SettingsPageProps> {
                           {{/profile-page}}`;
 }
 
-export default withUser(SettingsPage);
+export const settingsPage = withUser(SettingsPage);

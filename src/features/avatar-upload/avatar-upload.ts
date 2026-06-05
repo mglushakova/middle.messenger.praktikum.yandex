@@ -67,4 +67,4 @@ export class AvatarUpload extends Block<AvatarUploadProps> {
   };
 }
 
-export default withUserData(AvatarUpload);
+export const avatarUpload = withUserData(AvatarUpload);

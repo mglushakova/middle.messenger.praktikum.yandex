@@ -74,4 +74,4 @@ export class PasswordEditForm extends Block<PasswordEditFormProps> {
   };
 }
 
-export default withError(PasswordEditForm);
+export const passwordEditForm = withError(PasswordEditForm);

@@ -1,7 +1,7 @@
 import { Block, type BlockProps } from '@/shared/lib/block';
 import './chat-item.scss';
 import type { Chat } from '../../types';
-import chatsController from '../../chats-controller';
+import { chatsController } from '../../chats-controller';
 
 interface ChatItemProps extends BlockProps {
   chat: Chat;

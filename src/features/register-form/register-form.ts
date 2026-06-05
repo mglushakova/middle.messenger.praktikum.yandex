@@ -67,4 +67,4 @@ class RegisterForm extends Block<RegisterFormProps> {
   };
 }
 
-export default withAuthError(RegisterForm);
+export const registerForm = withAuthError(RegisterForm);

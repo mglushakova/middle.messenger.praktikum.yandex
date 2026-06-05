@@ -51,4 +51,4 @@ export class ChatList extends Block<ChatListProps> {
   };
 }
 
-export default withChats(ChatList);
+export const chatList = withChats(ChatList);

@@ -1,1 +1,1 @@
-export { default as ProfileEditForm } from './profile-edit-form';
+export { profileEditForm as ProfileEditForm } from './profile-edit-form';

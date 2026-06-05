@@ -1,1 +1,1 @@
-export { default as PasswordEditForm } from './password-edit-form';
+export { passwordEditForm as PasswordEditForm } from './password-edit-form';

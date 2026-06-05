@@ -37,10 +37,14 @@ class MessengerPageBase extends Block<MessengerPageProps> {
                           </section>
                         </main>`;
 
+  private chatsRequested = false;
+
   protected componentDidMount() {
-    if (this.props.chatsLoaded || this.props.chatsLoading) {
+    if (this.chatsRequested) {
       return;
     }
+
+    this.chatsRequested = true;
 
     chatsController.getChats();
   }
