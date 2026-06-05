@@ -1,0 +1,26 @@
+@use '@/app/styles/base/variables' as *;
+
+.remove-user-from-chat-modal {
+  margin: 20px 0;
+}
+
+.remove-user-from-chat-modal__title {
+  font-size: 15px;
+  text-align: center;
+}
+
+.remove-user-from-chat-modal__users-list {
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.remove-user-from-chat-modal__users-list-item {
+  margin-bottom: 10px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
