@@ -4,6 +4,7 @@ import './chat-menu.scss';
 interface ChatMenuProps extends BlockProps {
   onAddUser: () => void;
   onRemoveUser: () => void;
+  onDeleteChat: () => void;
 }
 
 export class ChatMenu extends Block<ChatMenuProps> {
@@ -34,6 +35,18 @@ export class ChatMenu extends Block<ChatMenuProps> {
         </svg>
         Удалить пользователя
       </button>
+
+      <button
+        type="button"
+        class="chat-menu__button chat-menu__remove-chat"
+      >
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="10.25" stroke="#3369F3" stroke-width="1.5"/>
+          <line x1="7.11077" y1="7.11091" x2="14.8889" y2="14.8891" stroke="#3369F3" stroke-width="1.5"/>
+          <line x1="7.11077" y1="14.8891" x2="14.8889" y2="7.11091" stroke="#3369F3" stroke-width="1.5"/>
+        </svg>
+        Удалить чат
+      </button>
     </div>
   `;
 
@@ -47,6 +60,10 @@ export class ChatMenu extends Block<ChatMenuProps> {
 
       if (target.closest('.chat-menu__remove-user')) {
         this.props.onRemoveUser();
+      }
+
+      if (target.closest('.chat-menu__remove-chat')) {
+        this.props.onDeleteChat();
       }
     },
   };

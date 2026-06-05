@@ -15,7 +15,7 @@ export class ChatItem extends Block<ChatItemProps> {
   protected template = `
     <li class="chat-item {{#if isActive}}chat-item_active{{/if}}">
       <button type="button" class="chat-item__button">
-        <div class="chat-item__avatar"></div>
+        {{> ChatAvatar}}
 
         <div class="chat-item__content">
           <span class="chat-item__name">{{ chat.title }}</span>

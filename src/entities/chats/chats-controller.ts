@@ -40,6 +40,18 @@ export class ChatsController {
     }
   }
 
+  async deleteChat(chatId: number) {
+    try {
+      await chatsAPI.deleteChat({ chatId });
+
+      await this.getChats();
+
+      store.setState('chats.selectedChat', null);
+    } catch {
+      store.setState('chats.error', 'Не удалось удалить чат');
+    }
+  }
+
   async addUserToChat(login: string, chatId: number) {
     const users = await userAPI.getUserByLogin({ login });
 

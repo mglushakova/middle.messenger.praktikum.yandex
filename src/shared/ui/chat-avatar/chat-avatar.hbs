@@ -1,0 +1,11 @@
+<div class="chat-avatar">
+  {{#if src}}
+  <img
+    src="https://ya-praktikum.tech/api/v2/resources{{ src }}"
+    alt="avatar"
+    class="chat-avatar__image"
+  />
+  {{else}}
+  <span class="chat-avatar__placeholder"></span>
+  {{/if}}
+</div>

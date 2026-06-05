@@ -4,6 +4,7 @@ import './chat-window.scss';
 import type { Chat } from '@/entities/chats/types';
 import { connect } from '@/shared/store';
 import { openModal } from '@/shared/lib/modal';
+import { chatsController } from '@/entities/chats';
 
 interface ChatWindowProps extends BlockProps {
   chat: Chat;
@@ -30,6 +31,13 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
           chatId: props?.chat?.id,
         });
       },
+      onDeleteChat: async () => {
+        if (!props?.chat?.id) {
+          return;
+        }
+
+        await chatsController.deleteChat(props.chat.id);
+      },
     } as ChatWindowProps);
   }
 
@@ -37,7 +45,7 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
     <div class="chat-window">
       <header class="chat-window__header">
         <div class="chat-window__user">
-          <div class="chat-window__avatar"></div>
+          {{> ChatAvatar}}
           <div class="chat-window__title">{{ chat.title }}</div>
         </div>
         <button type="button" class="chat-window__menu-button">
@@ -57,6 +65,7 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
           {{{ ChatMenu
             onAddUser=onAddUser
             onRemoveUser=onRemoveUser
+            onDeleteChat=onDeleteChat
           }}}
         {{/if}}
       </header>

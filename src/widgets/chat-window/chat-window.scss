@@ -17,20 +17,16 @@
   display: flex;
 }
 
+.chat-window__title {
+  margin-left: 10px;
+}
+
 .chat-window__user {
   align-items: center;
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
   display: flex;
-}
-
-.chat-window__avatar {
-  background-color: #efefef;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  margin-right: 10px;
 }
 
 .chat-window__menu-button {
