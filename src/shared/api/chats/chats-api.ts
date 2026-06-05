@@ -1,3 +1,4 @@
+import type { User } from '@/entities/user';
 import { BaseAPI } from '../base-api';
 import HTTPTransport from '../http-transport';
 import type {
@@ -46,6 +47,10 @@ class ChatsAPI extends BaseAPI {
     return this.http.post(`/token/${data.id}`, {
       data,
     });
+  }
+
+  getChatUsers(chatId: number) {
+    return this.http.get<User[]>(`/${chatId}/users`);
   }
 }
 

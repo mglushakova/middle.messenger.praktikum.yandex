@@ -26,9 +26,15 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
           chatId: props?.chat?.id,
         });
       },
-      onRemoveUser: () => {
+      onRemoveUser: async () => {
+        const chatId = this.props.chat.id;
+
+        if (!chatId) return;
+
+        const users = await chatsController.getChatUsers(chatId);
+
         openModal('removeUserFromChat', {
-          chatId: props?.chat?.id,
+          users,
         });
       },
       onDeleteChat: async () => {

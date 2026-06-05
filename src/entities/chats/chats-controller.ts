@@ -65,17 +65,21 @@ export class ChatsController {
     });
   }
 
-  async removeUserFromChat(login: string, chatId: number) {
-    const users = await userAPI.getUserByLogin({ login });
-
-    if (!users.length) {
-      throw new Error('Пользователь не найден');
-    }
-
+  async removeUserFromChat(userId: number, chatId: number) {
     await chatsAPI.deleteUsersFromChat({
-      users: [users[0].id],
+      users: [userId],
       chatId,
     });
+  }
+
+  async getChatUsers(chatId: number) {
+    try {
+      const users = await chatsAPI.getChatUsers(chatId);
+      return users;
+    } catch {
+      store.setState('chats.error', 'Не удалось загрузить пользователей');
+      return [];
+    }
   }
 
   selectChat(chat: Chat) {

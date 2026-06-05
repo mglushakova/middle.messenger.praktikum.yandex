@@ -27,3 +27,7 @@ export interface DeleteUsersFromChatRequest {
 export interface GetChatUserRequest {
   id: number;
 }
+
+export interface GetChatUsersRequest {
+  chatId: number;
+}
