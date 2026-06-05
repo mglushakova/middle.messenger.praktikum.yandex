@@ -18,7 +18,7 @@ class SettingsPage extends Block<SettingsPageProps> {
 
   protected template = `{{#> profile-page}}
                           {{{ AvatarUpload }}}
-                          <h1 class="profile__name heading-m">Иван</h1>
+                          <h1 class="profile__name heading-m">{{user.first_name}}</h1>
                           <ul class="profile__list">
                             {{> profile-item category="Почта" value=user.email}}
                             {{> profile-item category="Логин" value=user.login}}
