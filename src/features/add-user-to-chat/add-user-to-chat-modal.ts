@@ -3,14 +3,15 @@ import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
 import { closeModal } from '@/shared/lib/modal';
+import { store } from '@/shared/store';
 
-export class CreateChatModal extends Block<BlockProps> {
-  static componentName = 'CreateChatModal';
+export class AddUserToChatModal extends Block<BlockProps> {
+  static componentName = 'AddUserToChat';
 
   protected template = `
     {{#> Modal noPadding=true}}
-      {{#> Form title="Создать чат" buttonText="Создать" isModal=true }}
-        {{{ Input type="text" placeholder="Название" ref="title" name="title" label="Название" id="title" className="form__fieldset" }}}
+      {{#> Form title="Добавить пользователя" buttonText="Добавить" error=error isModal=true }}
+        {{{ Input type="text" placeholder="Логин" ref="login" name="login" label="Логин" id="login" className="form__fieldset" }}}
       {{/Form}}
     {{/Modal}}
   `;
@@ -23,13 +24,20 @@ export class CreateChatModal extends Block<BlockProps> {
 
       const formData = new FormData(form);
 
-      const title = formData.get('title');
+      const login = formData.get('login');
 
-      if (!title || typeof title !== 'string') {
+      if (!login || typeof login !== 'string') {
+        return;
+      }
+      const chatId = store.getState().chats.selectedChat?.id;
+
+      if (!chatId) {
         return;
       }
 
-      await chatsController.createChat(title);
+      await chatsController.addUserToChat(login, chatId);
+
+      closeModal();
     },
 
     click: (event: Event) => {

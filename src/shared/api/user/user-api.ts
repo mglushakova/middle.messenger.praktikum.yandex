@@ -1,3 +1,4 @@
+import type { User } from '@/entities/user';
 import { BaseAPI } from '../base-api';
 import HTTPTransport from '../http-transport';
 import type {
@@ -27,10 +28,10 @@ class UserAPI extends BaseAPI {
     });
   }
 
-  getUserByLogin(data: FindUserRequest) {
+  getUserByLogin(data: FindUserRequest): Promise<User[]> {
     return this.http.post('/search', {
       data,
-    });
+    }) as Promise<User[]>;
   }
 }
 

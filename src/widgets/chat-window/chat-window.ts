@@ -1,16 +1,44 @@
 import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 import './chat-window.scss';
+import type { Chat } from '@/entities/chats/types';
+import { connect } from '@/shared/store';
+import { openModal } from '@/shared/lib/modal';
 
-export class ChatWindow extends Block<BlockProps> {
+interface ChatWindowProps extends BlockProps {
+  chat: Chat;
+  isMenuOpen: boolean;
+}
+
+const withSelectedChat = connect((state) => ({
+  chat: state.chats.selectedChat,
+}));
+
+export class ChatWindowBase extends Block<ChatWindowProps> {
   static componentName = 'ChatWindow';
+
+  constructor(props?: ChatWindowProps) {
+    super({
+      ...(props ?? {}),
+      onAddUser: () => {
+        openModal('addUserToChat', {
+          chatId: props?.chat?.id,
+        });
+      },
+      onRemoveUser: () => {
+        openModal('removeUserFromChat', {
+          chatId: props?.chat?.id,
+        });
+      },
+    } as ChatWindowProps);
+  }
 
   protected template = `
     <div class="chat-window">
       <header class="chat-window__header">
         <div class="chat-window__user">
           <div class="chat-window__avatar"></div>
-          <div class="chat-window__title">Вадим</div>
+          <div class="chat-window__title">{{ chat.title }}</div>
         </div>
         <button type="button" class="chat-window__menu-button">
           <svg
@@ -25,6 +53,12 @@ export class ChatWindow extends Block<BlockProps> {
             <circle cx="1.5" cy="13.5" r="1.5" fill="#1E1E1E" />
           </svg>
         </button>
+        {{#if isMenuOpen}}
+          {{{ ChatMenu
+            onAddUser=onAddUser
+            onRemoveUser=onRemoveUser
+          }}}
+        {{/if}}
       </header>
 
       <div class="chat-window__messages"></div>
@@ -34,4 +68,20 @@ export class ChatWindow extends Block<BlockProps> {
       </footer>
     </div>
   `;
+
+  protected events = {
+    click: (event: Event) => {
+      const target = event.target as HTMLElement;
+
+      if (target.closest('.chat-window__menu-button')) {
+        this.setProps({
+          isMenuOpen: !this.props.isMenuOpen,
+        });
+
+        return;
+      }
+    },
+  };
 }
+
+export const ChatWindow = withSelectedChat(ChatWindowBase);

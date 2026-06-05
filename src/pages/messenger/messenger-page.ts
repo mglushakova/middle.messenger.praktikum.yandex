@@ -2,17 +2,24 @@ import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 
 import './messenger-page.scss';
+import { connect } from '@/shared/store';
+import type { Chat } from '@/entities/chats/types';
+import { chatsController } from '@/entities/chats';
 
 interface MessengerPageProps extends BlockProps {
-  isChatSelected: boolean;
+  selectedChat: Chat | null;
+  chatsLoaded: boolean;
+  chatsLoading: boolean;
 }
 
-export class MessengerPage extends Block<MessengerPageProps> {
-  constructor() {
-    super({
-      isChatSelected: false,
-    });
-  }
+const withSelectedChat = connect((state) => ({
+  selectedChat: state.chats.selectedChat,
+  chatsLoaded: state.chats.isLoaded,
+  chatsLoading: state.chats.isLoading,
+}));
+
+class MessengerPageBase extends Block<MessengerPageProps> {
+  static componentName = 'MessengerPage';
 
   protected template = `<main class="chat-page">
                           <aside class="chat-page__sidebar">
@@ -20,8 +27,8 @@ export class MessengerPage extends Block<MessengerPageProps> {
                           </aside>
 
                           <section class="chat-page__content">
-                            {{#if isChatSelected}}
-                              {{{ ChatWindow chat=selectedChat }}}
+                            {{#if selectedChat}}
+                              {{{ ChatWindow }}}
                             {{else}}
                               <div class="chat-page__placeholder">
                                 Выберите чат чтобы отправить сообщение
@@ -30,19 +37,13 @@ export class MessengerPage extends Block<MessengerPageProps> {
                           </section>
                         </main>`;
 
-  protected events = {
-    click: (event: Event) => {
-      const target = event.target as HTMLElement;
+  protected componentDidMount() {
+    if (this.props.chatsLoaded || this.props.chatsLoading) {
+      return;
+    }
 
-      const chatItem = target.closest('.chat-item');
-
-      if (!chatItem) {
-        return;
-      }
-
-      this.setProps({
-        isChatSelected: true,
-      });
-    },
-  };
+    chatsController.getChats();
+  }
 }
+
+export const MessengerPage = withSelectedChat(MessengerPageBase);

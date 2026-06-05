@@ -3,11 +3,15 @@ import { Block, type BlockProps } from '@/shared/lib/block';
 import { connect } from '@/shared/store';
 import type { ModalState } from '@/shared/store/types';
 import './modal-root.scss';
+import { AddUserToChatModal } from '@/features/add-user-to-chat';
+import { RemoveUserFromChatModal } from '@/features/remove-user-from-chat';
 
 type ModalComponent = new (props?: BlockProps) => Block<BlockProps>;
 
 const registry: Record<string, ModalComponent> = {
   createChat: CreateChatModal,
+  addUserToChat: AddUserToChatModal,
+  removeUserFromChat: RemoveUserFromChatModal,
 };
 interface ModalRootProps extends BlockProps {
   modal: ModalState | null;

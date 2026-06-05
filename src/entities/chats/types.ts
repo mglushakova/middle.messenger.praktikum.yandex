@@ -5,7 +5,7 @@ export interface Message {
 }
 
 export interface Chat {
-  id: string;
+  id: number;
   title: string;
   avatar: string;
   unread_count: number;

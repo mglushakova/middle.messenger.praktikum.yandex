@@ -17,8 +17,10 @@ export type AppState = {
   profile: RequestState;
   chats: {
     items: Chat[];
+    selectedChat: Chat | null;
     error: string | null;
     isLoading: boolean;
+    isLoaded: boolean;
   };
   ui: {
     modal: ModalState;

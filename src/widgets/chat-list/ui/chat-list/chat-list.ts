@@ -33,9 +33,7 @@ export class ChatList extends Block<ChatListProps> {
       <ul class="chat-list__items">
         {{#each chats}}
           {{{ ChatItem
-              name=this.title
-              lastMessage=this.content
-              time=this.time
+              chat=this
             }}}
         {{/each}}
       </ul>

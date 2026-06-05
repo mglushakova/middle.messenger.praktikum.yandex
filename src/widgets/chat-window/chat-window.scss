@@ -9,6 +9,7 @@
 }
 
 .chat-window__header {
+  position: relative;
   border-bottom: 1px solid $color-middle-grey;
   justify-content: space-between;
   align-items: center;
@@ -33,10 +34,22 @@
 }
 
 .chat-window__menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
-  background: 0 0;
+  background-color: transparent;
   border: none;
   padding: 0;
+  border-radius: 50%;
+  transition: background $transition-default;
+
+  &:hover,
+  &:focus-visible {
+    background-color: #f5f5f5;
+  }
 }
 
 .chat-window__messages {

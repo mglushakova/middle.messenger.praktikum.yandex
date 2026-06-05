@@ -48,8 +48,10 @@ const store = new Store<AppState>({
   },
   chats: {
     items: [],
+    selectedChat: null,
     error: null,
     isLoading: false,
+    isLoaded: false,
   },
   ui: {
     modal: {
