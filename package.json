@@ -27,6 +27,7 @@
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.6.0",
+    "husky": "^9.1.7",
     "prettier": "^3.8.3",
     "sass": "^1.99.0",
     "stylelint": "^17.11.0",
@@ -39,5 +40,10 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "handlebars": "^4.7.9"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all"
+    }
   }
 }
