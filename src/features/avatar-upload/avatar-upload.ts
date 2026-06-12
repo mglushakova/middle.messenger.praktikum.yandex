@@ -2,8 +2,7 @@ import { Block, type BlockProps } from '@/shared/lib/block';
 import { connect } from '@/shared/store';
 import './avatar-button.scss';
 import { userController } from '@/entities/user';
-
-const RESOURCES_URL = 'https://ya-praktikum.tech/api/v2/resources';
+import { RESOURCES_URL } from '@/shared/config/api';
 
 type AvatarUploadProps = BlockProps & {
   avatarUrl: string | null;

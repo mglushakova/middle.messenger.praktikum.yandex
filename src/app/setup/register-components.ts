@@ -14,6 +14,7 @@ import { LogoutLink } from '@/features/auth';
 import { avatarUpload as AvatarUpload } from '@/features/avatar-upload';
 import { ChatMenu } from '@/entities/chats';
 import { ChatMessage } from '@/entities/message';
+import { ChatAvatarUpload } from '@/entities/chats';
 
 registerComponent(Input);
 registerComponent(Button);
@@ -29,3 +30,4 @@ registerComponent(LogoutLink);
 registerComponent(AvatarUpload);
 registerComponent(ChatMenu);
 registerComponent(ChatMessage);
+registerComponent(ChatAvatarUpload);

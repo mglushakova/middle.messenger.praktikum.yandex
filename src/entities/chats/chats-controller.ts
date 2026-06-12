@@ -120,12 +120,6 @@ export class ChatsController {
       return;
     }
 
-    console.log({
-      userId,
-      chatId,
-      token,
-    });
-
     chatSocket.connect(`${WS_URL}/${userId}/${chatId}/${token}`);
 
     chatSocket.onOpen(() => {
@@ -143,6 +137,25 @@ export class ChatsController {
 
       store.setState('chats.messages', [...currentMessages, data]);
     });
+  }
+
+  async changeChatAvatar(chatId: number, file: File) {
+    const data = new FormData();
+
+    data.append('avatar', file);
+    data.append('chatId', String(chatId));
+
+    await chatsAPI.changeChatAvatar(data);
+
+    await this.getChats();
+
+    const selectedChat = store
+      .getState()
+      .chats.items.find((chat) => chat.id === chatId);
+
+    if (selectedChat) {
+      store.setState('chats.selectedChat', selectedChat);
+    }
   }
 }
 

@@ -17,6 +17,16 @@
   display: flex;
 }
 
+.chat-window__avatar-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 .chat-window__title {
   margin-left: 10px;
 }

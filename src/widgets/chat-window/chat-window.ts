@@ -61,7 +61,9 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
     <div class="chat-window">
       <header class="chat-window__header">
         <div class="chat-window__user">
-          {{> ChatAvatar}}
+          {{{ ChatAvatarUpload
+              chatId=chat.id
+          }}}
           <div class="chat-window__title">{{ chat.title }}</div>
         </div>
         <button type="button" class="chat-window__menu-button">
