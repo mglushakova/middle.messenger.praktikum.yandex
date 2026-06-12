@@ -18,6 +18,8 @@ const initialState: AppState = {
     items: [],
     selectedChat: null,
     error: null,
+    token: null,
+    messages: [],
     isLoading: false,
     isLoaded: false,
   },

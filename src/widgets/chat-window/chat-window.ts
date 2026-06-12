@@ -5,15 +5,25 @@ import type { Chat } from '@/entities/chats/types';
 import { connect } from '@/shared/store';
 import { openModal } from '@/shared/lib/modal';
 import { chatsController } from '@/entities/chats';
+import type { ChatMessageType } from '@/entities/message';
 
 interface ChatWindowProps extends BlockProps {
   chat: Chat;
   isMenuOpen: boolean;
+  messages: ChatMessageType[];
 }
 
-const withSelectedChat = connect((state) => ({
-  chat: state.chats.selectedChat,
-}));
+const withSelectedChat = connect((state) => {
+  const currentUserId = state.user?.id;
+
+  return {
+    chat: state.chats.selectedChat,
+    messages: (state.chats.messages ?? []).map((message) => ({
+      ...message,
+      isOwn: message.user_id === currentUserId,
+    })),
+  };
+});
 
 export class ChatWindowBase extends Block<ChatWindowProps> {
   static componentName = 'ChatWindow';
@@ -76,7 +86,15 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
         {{/if}}
       </header>
 
-      <div class="chat-window__messages"></div>
+      <div class="chat-window__messages">
+        {{#each messages}}
+          {{{ ChatMessage
+              content=this.content
+              time=this.time
+              isOwn=this.isOwn
+          }}}
+        {{/each}}
+      </div>
 
       <footer class="chat-window__footer">
         {{{ MessageInput }}}

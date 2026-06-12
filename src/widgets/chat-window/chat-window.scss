@@ -50,6 +50,11 @@
 
 .chat-window__messages {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-bottom: 30px;
 }
 
 .chat-window__footer {

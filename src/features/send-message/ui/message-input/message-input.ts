@@ -2,6 +2,7 @@ import { Block } from '@/shared/lib/block';
 import type { BlockProps } from '@/shared/lib/block';
 import './message-input.scss';
 import { validate } from '@/shared/lib/validation';
+import { chatSocket } from '@/entities/chats/api/chat-socket';
 
 export class MessageInput extends Block<BlockProps> {
   static componentName = 'MessageInput';
@@ -114,9 +115,7 @@ export class MessageInput extends Block<BlockProps> {
 
       input.classList.remove('message-input__field_error');
 
-      console.log({
-        message: input.value,
-      });
+      chatSocket.sendMessage(input.value);
 
       input.value = '';
     },

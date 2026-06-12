@@ -4,6 +4,8 @@ import { store } from '@/shared/store';
 import type { Chat } from './types';
 import { closeModal } from '@/shared/lib/modal';
 import { userAPI } from '@/shared/api/user';
+import { chatSocket } from './api/chat-socket';
+import { WS_URL } from '@/shared/config/api';
 
 export class ChatsController {
   async getChats(data?: GetChatsRequest) {
@@ -82,8 +84,65 @@ export class ChatsController {
     }
   }
 
+  async getChatToken(chatId: number): Promise<string | null> {
+    try {
+      const response = await chatsAPI.getChatToken(chatId);
+
+      store.setState('chats.token', response.token);
+
+      return response.token;
+    } catch {
+      store.setState(
+        'chats.error',
+        'Не удалось получить токен для подключения к чату',
+      );
+
+      return null;
+    }
+  }
+
   selectChat(chat: Chat) {
     store.setState('chats.selectedChat', chat);
+
+    void this.connectToChat(chat.id);
+  }
+
+  async connectToChat(chatId: number) {
+    const token = await this.getChatToken(chatId);
+
+    if (!token) {
+      return;
+    }
+
+    const userId = store?.getState()?.user?.id;
+
+    if (!userId) {
+      return;
+    }
+
+    console.log({
+      userId,
+      chatId,
+      token,
+    });
+
+    chatSocket.connect(`${WS_URL}/${userId}/${chatId}/${token}`);
+
+    chatSocket.onOpen(() => {
+      chatSocket.getOldMessages();
+    });
+
+    chatSocket.onMessage((data) => {
+      if (Array.isArray(data)) {
+        store.setState('chats.messages', [...data].reverse());
+
+        return;
+      }
+
+      const currentMessages = store.getState().chats.messages ?? [];
+
+      store.setState('chats.messages', [...currentMessages, data]);
+    });
   }
 }
 

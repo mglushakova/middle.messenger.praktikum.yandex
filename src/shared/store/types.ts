@@ -1,4 +1,5 @@
 import type { Chat } from '@/entities/chats/types';
+import type { ChatMessageType } from '@/entities/message';
 import type { User } from '@/entities/user';
 
 export type RequestState = {
@@ -19,6 +20,8 @@ export type AppState = {
     items: Chat[];
     selectedChat: Chat | null;
     error: string | null;
+    token: string | null;
+    messages: ChatMessageType[];
     isLoading: boolean;
     isLoaded: boolean;
   };

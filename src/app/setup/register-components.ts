@@ -13,6 +13,7 @@ import { LoginForm } from '@/features/auth';
 import { LogoutLink } from '@/features/auth';
 import { avatarUpload as AvatarUpload } from '@/features/avatar-upload';
 import { ChatMenu } from '@/entities/chats';
+import { ChatMessage } from '@/entities/message';
 
 registerComponent(Input);
 registerComponent(Button);
@@ -27,3 +28,4 @@ registerComponent(MessageInput);
 registerComponent(LogoutLink);
 registerComponent(AvatarUpload);
 registerComponent(ChatMenu);
+registerComponent(ChatMessage);

@@ -7,7 +7,6 @@ import type {
   DeleteChatByIdRequest,
   AddUsersToChatRequest,
   DeleteUsersFromChatRequest,
-  GetChatUserRequest,
 } from './types';
 
 class ChatsAPI extends BaseAPI {
@@ -43,14 +42,12 @@ class ChatsAPI extends BaseAPI {
     });
   }
 
-  getChatUser(data: GetChatUserRequest) {
-    return this.http.post(`/token/${data.id}`, {
-      data,
-    });
-  }
-
   getChatUsers(chatId: number) {
     return this.http.get<User[]>(`/${chatId}/users`);
+  }
+
+  getChatToken(chatId: number) {
+    return this.http.post<{ token: string }>(`/token/${chatId}`);
   }
 }
 
