@@ -19,7 +19,9 @@
     "lint:js": "eslint .",
     "lint:js:fix": "eslint --fix .",
     "lint:css": "stylelint **/*.scss",
-    "lint:css:fix": "stylelint --fix **/*.scss"
+    "lint:css:fix": "stylelint --fix **/*.scss",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -28,6 +30,7 @@
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
+    "jsdom": "^29.1.1",
     "prettier": "^3.8.3",
     "sass": "^1.99.0",
     "stylelint": "^17.11.0",
@@ -39,7 +42,8 @@
   },
   "dependencies": {
     "dotenv": "^17.4.2",
-    "handlebars": "^4.7.9"
+    "handlebars": "^4.7.9",
+    "vitest": "^4.1.8"
   },
   "husky": {
     "hooks": {
