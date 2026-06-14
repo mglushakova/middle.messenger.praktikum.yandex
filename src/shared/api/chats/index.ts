@@ -3,5 +3,4 @@ export type {
   DeleteChatByIdRequest,
   AddUsersToChatRequest,
   DeleteUsersFromChatRequest,
-  GetChatUserRequest,
 } from './types';
