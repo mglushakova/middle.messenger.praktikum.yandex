@@ -34,27 +34,27 @@ describe('Block', () => {
 
     expect(component.element()?.innerHTML).toBe('new value');
   });
-});
 
-class ChildComponent extends Block<BlockProps> {
-  static componentName = 'ChildComponent';
-  protected template = `
+  class ChildComponent extends Block<BlockProps> {
+    static componentName = 'ChildComponent';
+    protected template = `
     <span>Child</span>
   `;
-}
+  }
 
-registerComponent(ChildComponent);
+  registerComponent(ChildComponent);
 
-class ParentComponent extends Block<BlockProps> {
-  protected template = `
+  class ParentComponent extends Block<BlockProps> {
+    protected template = `
     <div data-child>{{{ ChildComponent }}}</div>
   `;
-}
+  }
 
-it('рендерит дочерний компонент', () => {
-  const parent = new ParentComponent();
+  it('рендерит дочерний компонент', () => {
+    const parent = new ParentComponent();
 
-  const element = parent.element();
+    const element = parent.element();
 
-  expect(element?.textContent).toContain('Child');
+    expect(element?.textContent).toContain('Child');
+  });
 });

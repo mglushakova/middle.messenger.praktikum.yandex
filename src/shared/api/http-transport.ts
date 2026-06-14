@@ -1,9 +1,8 @@
+import { API_URL } from '../config/api';
 import {
   queryStringify,
   type QueryData,
 } from '../lib/query-stringify/query-stringify';
-
-const API_URL = 'https://ya-praktikum.tech/api/v2';
 
 const METHODS = {
   GET: 'GET',
