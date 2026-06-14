@@ -2,6 +2,21 @@ import { describe, it, expect } from 'vitest';
 import { Block, type BlockProps } from './block';
 import { registerComponent } from '../handlebars/registerComponent';
 
+class ChildComponent extends Block<BlockProps> {
+  static componentName = 'ChildComponent';
+  protected template = `
+    <span>Child</span>
+  `;
+}
+
+registerComponent(ChildComponent);
+
+class ParentComponent extends Block<BlockProps> {
+  protected template = `
+    <div data-child>{{{ ChildComponent }}}</div>
+  `;
+}
+
 interface TestComponentProps extends BlockProps {
   content: string;
 }
@@ -35,26 +50,27 @@ describe('Block', () => {
     expect(component.element()?.innerHTML).toBe('new value');
   });
 
-  class ChildComponent extends Block<BlockProps> {
-    static componentName = 'ChildComponent';
-    protected template = `
-    <span>Child</span>
-  `;
-  }
-
-  registerComponent(ChildComponent);
-
-  class ParentComponent extends Block<BlockProps> {
-    protected template = `
-    <div data-child>{{{ ChildComponent }}}</div>
-  `;
-  }
-
   it('рендерит дочерний компонент', () => {
     const parent = new ParentComponent();
 
     const element = parent.element();
 
-    expect(element?.textContent).toContain('Child');
+    expect(element?.querySelector('span')?.textContent).toBe('Child');
+  });
+
+  it('заменяет старый DOM при ререндере', () => {
+    const component = new TestComponent({
+      content: 'old',
+    });
+
+    const firstElement = component.element();
+
+    component.setProps({
+      content: 'new',
+    });
+
+    const secondElement = component.element();
+
+    expect(firstElement).not.toBe(secondElement);
   });
 });
