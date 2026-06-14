@@ -17,6 +17,15 @@ class ParentComponent extends Block<BlockProps> {
   `;
 }
 
+class DynamicChild extends Block<BlockProps> {
+  static componentName = 'DynamicChild';
+  protected template = `
+    <span>{{content}}</span>
+  `;
+}
+
+registerComponent(DynamicChild);
+
 interface TestComponentProps extends BlockProps {
   content: string;
 }
@@ -72,5 +81,17 @@ describe('Block', () => {
     const secondElement = component.element();
 
     expect(firstElement).not.toBe(secondElement);
+  });
+
+  it('перерендеривает child после смены пропсов', () => {
+    const child = new DynamicChild({
+      content: 'old',
+    } as BlockProps & { content: string });
+
+    child.setProps({
+      content: 'new',
+    } as BlockProps & { content: string });
+
+    expect(child.element()?.textContent).toBe('new');
   });
 });
