@@ -1,7 +1,7 @@
 @use './base/typography';
 @use './base/variables';
-@use '@/shared/ui/link/link.scss';
-@use '@/shared/ui/button/button.scss';
+@use '@/shared/ui/link/link';
+@use '@/shared/ui/button/button';
 
 body {
   margin: 0;

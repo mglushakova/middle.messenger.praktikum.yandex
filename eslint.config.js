@@ -1,12 +1,12 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import { defineConfig } from "eslint/config";
-import eslintConfigPrettier from "eslint-config-prettier/flat";
+import js from '@eslint/js';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
 
 export default defineConfig([
   {
-    ignores: ["src/dist/**"],
+    ignores: ['**/dist/**'],
   },
 
   js.configs.recommended,
@@ -14,17 +14,17 @@ export default defineConfig([
   ...tseslint.configs.recommended,
 
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
 
     languageOptions: {
       globals: globals.browser,
     },
 
     rules: {
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "error",
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
 
-      "no-undef": "off",
+      'no-undef': 'off',
     },
   },
 

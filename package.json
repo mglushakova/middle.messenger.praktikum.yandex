@@ -22,7 +22,8 @@
     "lint:css:fix": "stylelint --fix **/*.scss",
     "test:vitest": "vitest",
     "test": "jest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
