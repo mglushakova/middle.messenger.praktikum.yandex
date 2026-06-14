@@ -1,4 +1,4 @@
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 import { chatsController } from '@/entities/chats';
 import { connect } from '@/shared/store';
 import './chat-avatar-upload.scss';

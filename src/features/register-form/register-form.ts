@@ -1,5 +1,5 @@
-import { Block } from '@/shared/lib/block';
-import type { BlockProps } from '@/shared/lib/block';
+import { Block } from '@/shared/lib/block/block';
+import type { BlockProps } from '@/shared/lib/block/block';
 import { validateForm } from '@/shared/lib/validation';
 import { authController } from '../auth';
 import { connect } from '@/shared/store';

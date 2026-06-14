@@ -1,4 +1,4 @@
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 import { connect } from '@/shared/store';
 import './avatar-button.scss';
 import { userController } from '@/entities/user';

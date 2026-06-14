@@ -1,5 +1,5 @@
 import { CreateChatModal } from '@/features/create-chat';
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 import { connect } from '@/shared/store';
 import type { ModalState } from '@/shared/store/types';
 import './modal-root.scss';

@@ -1,4 +1,4 @@
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 import { authController } from '../auth-controller';
 
 export class LogoutLink extends Block<BlockProps> {

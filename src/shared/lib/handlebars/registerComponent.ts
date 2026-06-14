@@ -1,6 +1,6 @@
 import type { HelperOptions } from 'handlebars';
 import Handlebars from 'handlebars';
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 
 type BlockClass<P extends BlockProps = BlockProps> = {
   new (props: P): Block<P>;

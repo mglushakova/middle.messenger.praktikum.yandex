@@ -1,5 +1,5 @@
 import type { AppState } from './types';
-import type { Block, BlockProps } from '../lib/block';
+import type { Block, BlockProps } from '../lib/block/block';
 import { isEqual } from '../lib/object/is-equal';
 import store from './Store';
 

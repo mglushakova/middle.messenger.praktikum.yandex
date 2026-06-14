@@ -1,4 +1,4 @@
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 import './message.scss';
 
 interface MessageProps extends BlockProps {

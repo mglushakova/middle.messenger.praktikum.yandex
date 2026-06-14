@@ -1,6 +1,6 @@
 import { store } from '@/shared/store';
 import { Route, type RouteAccess, type RouteHandler } from './Route';
-import type { Block, BlockProps } from '@/shared/lib/block';
+import type { Block, BlockProps } from '@/shared/lib/block/block';
 
 type PageConstructor = {
   new (...args: never[]): Block<BlockProps>;

@@ -1,4 +1,4 @@
-import { Block, type BlockProps } from '@/shared/lib/block';
+import { Block, type BlockProps } from '@/shared/lib/block/block';
 import './chat-list.scss';
 import type { Chat } from '@/entities/chats/types';
 import { connect } from '@/shared/store';

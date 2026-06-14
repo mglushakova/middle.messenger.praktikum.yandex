@@ -1,5 +1,5 @@
-import { Block } from '@/shared/lib/block';
-import type { BlockProps } from '@/shared/lib/block';
+import { Block } from '@/shared/lib/block/block';
+import type { BlockProps } from '@/shared/lib/block/block';
 import './message-input.scss';
 import { validate } from '@/shared/lib/validation';
 import { chatSocket } from '@/entities/chats/api/chat-socket';

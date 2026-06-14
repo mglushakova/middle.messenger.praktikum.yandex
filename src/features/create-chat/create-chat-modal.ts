@@ -1,6 +1,6 @@
 import { chatsController } from '@/entities/chats';
-import { Block } from '@/shared/lib/block';
-import type { BlockProps } from '@/shared/lib/block';
+import { Block } from '@/shared/lib/block/block';
+import type { BlockProps } from '@/shared/lib/block/block';
 
 import { closeModal } from '@/shared/lib/modal';
 
