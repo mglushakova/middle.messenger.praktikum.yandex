@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig } from 'vite';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -18,9 +18,5 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-  },
-
-  test: {
-    environment: 'jsdom',
   },
 });
