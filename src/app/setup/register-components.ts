@@ -15,6 +15,7 @@ import { avatarUpload as AvatarUpload } from '@/features/avatar-upload';
 import { ChatMenu } from '@/entities/chats';
 import { ChatMessage } from '@/entities/message';
 import { ChatAvatarUpload } from '@/entities/chats';
+import { ProfileBackNav } from '@/shared/ui/profile-back-nav';
 
 registerComponent(Input);
 registerComponent(Button);
@@ -31,3 +32,4 @@ registerComponent(AvatarUpload);
 registerComponent(ChatMenu);
 registerComponent(ChatMessage);
 registerComponent(ChatAvatarUpload);
+registerComponent(ProfileBackNav);

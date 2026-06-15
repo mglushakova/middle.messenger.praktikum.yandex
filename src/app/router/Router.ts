@@ -45,6 +45,8 @@ export class Router {
 
   private _onRoute(pathname: string): void {
     const route = this.getRoute(pathname);
+    console.log(route);
+    console.log(pathname);
     const isAuthorized = !!store.getState().user;
 
     if (!route) {
@@ -74,6 +76,14 @@ export class Router {
   go(pathname: string): void {
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
+  }
+
+  back(): void {
+    window.history.back();
+  }
+
+  forward(): void {
+    window.history.forward();
   }
 
   getRoute(pathname: string): Route | undefined {
