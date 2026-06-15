@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from '@jest/globals';
 import { Block, type BlockProps } from './block';
 import { registerComponent } from '../handlebars/registerComponent';
 

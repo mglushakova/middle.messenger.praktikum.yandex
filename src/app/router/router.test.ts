@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { Router } from './Router';
 import { store } from '@/shared/store';
 
@@ -6,13 +6,13 @@ describe('Навигация по истории', () => {
   let router: Router;
 
   beforeEach(() => {
-    vi.restoreAllMocks();
+    jest.restoreAllMocks();
     router = new Router();
   });
 
   it('регистрирует route', () => {
-    const start = vi.fn();
-    const leave = vi.fn();
+    const start = jest.fn();
+    const leave = jest.fn();
 
     router.use('/sign-up', start, leave, 'public');
 
@@ -20,9 +20,9 @@ describe('Навигация по истории', () => {
   });
 
   it('вызывает pushState когда вызван go', () => {
-    const pushStateSpy = vi.spyOn(window.history, 'pushState');
+    const pushStateSpy = jest.spyOn(window.history, 'pushState');
 
-    router.use('/sign-up', vi.fn(), vi.fn(), 'public');
+    router.use('/sign-up', jest.fn(), jest.fn(), 'public');
 
     router.go('/sign-up');
 
@@ -30,9 +30,9 @@ describe('Навигация по истории', () => {
   });
 
   it('редиректит на 404 для неизвестного роута', () => {
-    const pushStateSpy = vi.spyOn(window.history, 'pushState');
+    const pushStateSpy = jest.spyOn(window.history, 'pushState');
 
-    router.use('/404', vi.fn(), vi.fn(), 'public');
+    router.use('/404', jest.fn(), jest.fn(), 'public');
 
     router.go('/unknown');
 
@@ -42,10 +42,10 @@ describe('Навигация по истории', () => {
   it('защищает приватный роут', () => {
     store.setState('user', null);
 
-    const pushStateSpy = vi.spyOn(window.history, 'pushState');
+    const pushStateSpy = jest.spyOn(window.history, 'pushState');
 
-    router.use('/', vi.fn(), vi.fn(), 'public');
-    router.use('/messenger', vi.fn(), vi.fn(), 'private');
+    router.use('/', jest.fn(), jest.fn(), 'public');
+    router.use('/messenger', jest.fn(), jest.fn(), 'private');
 
     router.go('/messenger');
 
@@ -55,9 +55,9 @@ describe('Навигация по истории', () => {
   it('позволяет авторизованному пользователю открывать приватный роут', () => {
     store.setState('user', { id: 1 });
 
-    const render = vi.fn();
+    const render = jest.fn();
 
-    router.use('/messenger', render, vi.fn(), 'private');
+    router.use('/messenger', render, jest.fn(), 'private');
 
     router.go('/messenger');
 

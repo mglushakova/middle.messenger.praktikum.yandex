@@ -1,20 +1,34 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  describe,
+  it,
+  expect,
+  jest,
+  beforeEach,
+  beforeAll,
+  afterAll,
+} from '@jest/globals';
 import HTTPTransport from './http-transport';
 import { API_URL } from '../config/api';
 
 describe('HTTPTransport', () => {
-  let openMock: ReturnType<typeof vi.fn>;
-  let sendMock: ReturnType<typeof vi.fn>;
+  let openMock: ReturnType<typeof jest.fn>;
+  let sendMock: ReturnType<typeof jest.fn>;
+
+  let originalXHR: typeof XMLHttpRequest;
+
+  beforeAll(() => {
+    originalXHR = global.XMLHttpRequest;
+  });
 
   beforeEach(() => {
-    openMock = vi.fn();
-    sendMock = vi.fn();
+    openMock = jest.fn();
+    sendMock = jest.fn();
 
     class MockXHR {
       open = openMock;
       send = sendMock;
 
-      setRequestHeader = vi.fn();
+      setRequestHeader = jest.fn();
 
       withCredentials = false;
       timeout = 0;
@@ -25,7 +39,11 @@ describe('HTTPTransport', () => {
       ontimeout = null;
     }
 
-    vi.stubGlobal('XMLHttpRequest', MockXHR);
+    global.XMLHttpRequest = MockXHR as unknown as typeof XMLHttpRequest;
+  });
+
+  afterAll(() => {
+    global.XMLHttpRequest = originalXHR;
   });
 
   it('вызывает метод GET', () => {
