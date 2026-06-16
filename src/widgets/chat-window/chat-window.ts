@@ -28,6 +28,9 @@ const withSelectedChat = connect((state) => {
 export class ChatWindowBase extends Block<ChatWindowProps> {
   static componentName = 'ChatWindow';
 
+  private scrollContainer: HTMLElement | null = null;
+  private previousHeight = 0;
+
   constructor(props?: ChatWindowProps) {
     super({
       ...(props ?? {}),
@@ -121,14 +124,53 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
   };
 
   protected componentDidMount() {
-    const messagesContainer = this.element()?.querySelector(
+    this.scrollContainer = this.element()?.querySelector(
       '.chat-window__messages',
-    );
+    ) as HTMLElement;
 
-    if (messagesContainer) {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    if (!this.scrollContainer) return;
+
+    this.scrollContainer.scrollTop = this.scrollContainer.scrollHeight;
+
+    this.scrollContainer.addEventListener('scroll', this.onScroll);
+  }
+
+  protected componentDidUpdate() {
+    if (!this.scrollContainer) return;
+
+    requestAnimationFrame(() => {
+      if (!this.scrollContainer) return;
+      const newHeight = this.scrollContainer.scrollHeight;
+
+      const diff = newHeight - this.previousHeight;
+
+      this.scrollContainer!.scrollTop += diff;
+
+      this.previousHeight = newHeight;
+    });
+  }
+
+  protected componentWillUnmount() {
+    if (this.scrollContainer) {
+      this.scrollContainer.removeEventListener('scroll', this.onScroll);
     }
   }
+
+  private handleLoadOlder = () => {
+    if (!this.scrollContainer) return;
+
+    this.previousHeight = this.scrollContainer.scrollHeight;
+
+    chatsController.loadOlderMessages();
+  };
+
+  private onScroll = () => {
+    if (!this.scrollContainer) return;
+
+    if (this.scrollContainer.scrollTop <= 100) {
+      this.handleLoadOlder();
+    }
+  };
 }
 
 export const ChatWindow = withSelectedChat(ChatWindowBase);

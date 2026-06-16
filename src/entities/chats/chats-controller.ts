@@ -8,6 +8,9 @@ import { chatSocket } from './api/chat-socket';
 import { WS_URL } from '@/shared/config/api';
 
 export class ChatsController {
+  private isLoadingOldMessages = false;
+  private hasMoreMessages = true;
+
   async getChats(data?: GetChatsRequest) {
     try {
       store.setState('chats.isLoading', true);
@@ -127,7 +130,17 @@ export class ChatsController {
 
     chatSocket.onMessage((data) => {
       if (Array.isArray(data)) {
-        store.setState('chats.messages', [...data].reverse());
+        if (data.length === 0) {
+          this.hasMoreMessages = false;
+          return;
+        }
+
+        const currentMessages = store.getState().chats.messages ?? [];
+
+        store.setState('chats.messages', [
+          ...data.reverse(),
+          ...currentMessages,
+        ]);
 
         return;
       }
@@ -165,6 +178,21 @@ export class ChatsController {
     if (selectedChat) {
       store.setState('chats.selectedChat', selectedChat);
     }
+  }
+
+  async loadOlderMessages() {
+    if (!this.hasMoreMessages) return;
+    const messages = store.getState().chats.messages ?? [];
+
+    if (!messages.length || this.isLoadingOldMessages) {
+      return;
+    }
+
+    const oldestMessage = messages[0];
+
+    this.isLoadingOldMessages = true;
+
+    chatSocket.getOldMessages(Number(oldestMessage.id));
   }
 }
 
