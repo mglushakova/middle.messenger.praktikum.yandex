@@ -21,7 +21,6 @@
     "lint:css": "stylelint **/*.scss",
     "lint:css:fix": "stylelint --fix **/*.scss",
     "test": "jest",
-    "test:run": "jest run",
     "prepare": "husky"
   },
   "devDependencies": {
