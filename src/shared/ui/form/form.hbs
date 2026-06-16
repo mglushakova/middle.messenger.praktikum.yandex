@@ -1,0 +1,31 @@
+<form
+  class="{{#if isProfile}}form_type_profile{{/if}} {{#if isModal}}form_type_modal{{/if}} form"
+>
+  {{#unless isProfile}}
+  <h1 class="form__title">{{ title }}</h1>
+  {{/unless}}
+
+  {{> @partial-block}}
+
+  {{#if isProfile}}
+  <button type="submit" class="form__button button">
+    {{ buttonText }}
+  </button>
+  {{else}}
+  <div class="form__bottom">
+    <button type="submit" class="form__button button">
+      {{ buttonText }}
+    </button>
+
+    <a class="link" href="{{ linkHref }}">
+      {{ linkText }}
+    </a>
+  </div>
+  {{/if}}
+
+  {{#if error}}
+  <div class="form__error">
+    {{ error }}
+  </div>
+  {{/if}}
+</form>

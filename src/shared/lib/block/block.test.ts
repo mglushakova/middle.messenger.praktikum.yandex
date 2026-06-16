@@ -1,0 +1,97 @@
+import { describe, it, expect } from '@jest/globals';
+import { Block, type BlockProps } from './block';
+import { registerComponent } from '../handlebars/registerComponent';
+
+class ChildComponent extends Block<BlockProps> {
+  static componentName = 'ChildComponent';
+  protected template = `
+    <span>Child</span>
+  `;
+}
+
+registerComponent(ChildComponent);
+
+class ParentComponent extends Block<BlockProps> {
+  protected template = `
+    <div data-child>{{{ ChildComponent }}}</div>
+  `;
+}
+
+class DynamicChild extends Block<BlockProps> {
+  static componentName = 'DynamicChild';
+  protected template = `
+    <span>{{content}}</span>
+  `;
+}
+
+registerComponent(DynamicChild);
+
+interface TestComponentProps extends BlockProps {
+  content: string;
+}
+
+class TestComponent extends Block<TestComponentProps> {
+  protected template = `
+    <div>{{content}}</div>
+  `;
+}
+
+describe('Block', () => {
+  it('рендерит пропсы', () => {
+    const component = new TestComponent({
+      content: 'Hello world',
+    } as BlockProps & { content: string });
+
+    const element = component.element();
+
+    expect(element?.innerHTML).toBe('Hello world');
+  });
+
+  it('делает ререндер после вызова setProps', () => {
+    const component = new TestComponent({
+      content: 'old value',
+    });
+
+    component.setProps({
+      content: 'new value',
+    });
+
+    expect(component.element()?.innerHTML).toBe('new value');
+  });
+
+  it('рендерит дочерний компонент', () => {
+    const parent = new ParentComponent();
+
+    const element = parent.element();
+
+    expect(element?.querySelector('span')?.textContent).toBe('Child');
+  });
+
+  it('заменяет старый DOM при ререндере', () => {
+    const component = new TestComponent({
+      content: 'old',
+    });
+
+    const firstElement = component.element();
+
+    component.setProps({
+      content: 'new',
+    });
+
+    const secondElement = component.element();
+
+    expect(firstElement).not.toBe(secondElement);
+  });
+
+  it('перерендеривает child после смены пропсов', () => {
+    const child = new DynamicChild({
+      content: 'old',
+    } as BlockProps & { content: string });
+
+    child.setProps({
+      content: 'new',
+    } as BlockProps & { content: string });
+
+    expect(child.element()?.textContent).toBe('new');
+  });
+});

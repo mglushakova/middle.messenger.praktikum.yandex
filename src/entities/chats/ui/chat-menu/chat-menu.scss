@@ -1,0 +1,33 @@
+@use '@/app/styles/base/variables' as *;
+
+.chat-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: $color-white;
+  box-shadow: 0 0 6px 0 #00000024;
+}
+
+.chat-menu__button {
+  margin: 0 0 15px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 12px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color $transition-default;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-blue;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
