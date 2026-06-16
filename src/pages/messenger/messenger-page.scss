@@ -16,6 +16,7 @@
 }
 
 .chat-page__content {
+  height: 100vh;
   display: none;
 
   @media screen and (width >= 480px) {

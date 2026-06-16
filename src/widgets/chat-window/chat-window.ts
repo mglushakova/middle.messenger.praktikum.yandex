@@ -89,13 +89,15 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
       </header>
 
       <div class="chat-window__messages">
-        {{#each messages}}
-          {{{ ChatMessage
-              content=this.content
-              time=this.time
-              isOwn=this.isOwn
-          }}}
-        {{/each}}
+        <div class="chat-window__messages-content">
+          {{#each messages}}
+            {{{ ChatMessage
+                content=this.content
+                time=this.time
+                isOwn=this.isOwn
+            }}}
+          {{/each}}
+        </div>
       </div>
 
       <footer class="chat-window__footer">
@@ -117,6 +119,16 @@ export class ChatWindowBase extends Block<ChatWindowProps> {
       }
     },
   };
+
+  protected componentDidMount() {
+    const messagesContainer = this.element()?.querySelector(
+      '.chat-window__messages',
+    );
+
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  }
 }
 
 export const ChatWindow = withSelectedChat(ChatWindowBase);

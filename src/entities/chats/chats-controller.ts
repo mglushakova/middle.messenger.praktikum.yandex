@@ -108,6 +108,7 @@ export class ChatsController {
   }
 
   async connectToChat(chatId: number) {
+    store.setState('chats.messages', []);
     const token = await this.getChatToken(chatId);
 
     if (!token) {
@@ -120,8 +121,6 @@ export class ChatsController {
       return;
     }
 
-    chatSocket.connect(`${WS_URL}/${userId}/${chatId}/${token}`);
-
     chatSocket.onOpen(() => {
       chatSocket.getOldMessages();
     });
@@ -133,10 +132,20 @@ export class ChatsController {
         return;
       }
 
+      if (
+        data.type !== 'message' &&
+        data.type !== 'file' &&
+        data.type !== 'sticker'
+      ) {
+        return;
+      }
+
       const currentMessages = store.getState().chats.messages ?? [];
 
       store.setState('chats.messages', [...currentMessages, data]);
     });
+
+    chatSocket.connect(`${WS_URL}/${userId}/${chatId}/${token}`);
   }
 
   async changeChatAvatar(chatId: number, file: File) {

@@ -1,6 +1,8 @@
+import type { WSData } from './types';
+
 class ChatSocket {
   private socket: WebSocket | null = null;
-  private messageHandler?: (data: unknown) => void;
+  private messageHandler?: (data: WSData | WSData[]) => void;
   private openHandler?: () => void;
   private closeHandler?: () => void;
   private pingInterval?: ReturnType<typeof setInterval>;
@@ -20,7 +22,6 @@ class ChatSocket {
       this.openHandler?.();
 
       this.startPing();
-      this.getOldMessages(0);
     });
 
     this.socket.addEventListener('close', () => {
@@ -29,7 +30,7 @@ class ChatSocket {
 
     this.socket.addEventListener('message', (event) => {
       try {
-        const data = JSON.parse(event.data);
+        const data = JSON.parse(event.data) as WSData | WSData[];
         this.messageHandler?.(data);
       } catch (error) {
         console.error(error);
@@ -50,14 +51,14 @@ class ChatSocket {
     });
   }
 
-  getOldMessages(count = 20) {
+  getOldMessages(offset = 0) {
     this.send({
-      content: String(count),
+      content: String(offset),
       type: 'get old',
     });
   }
 
-  onMessage(callback: (data: unknown) => void) {
+  onMessage(callback: (data: WSData | WSData[]) => void) {
     this.messageHandler = callback;
   }
 

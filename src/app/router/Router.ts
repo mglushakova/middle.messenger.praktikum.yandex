@@ -45,8 +45,6 @@ export class Router {
 
   private _onRoute(pathname: string): void {
     const route = this.getRoute(pathname);
-    console.log(route);
-    console.log(pathname);
     const isAuthorized = !!store.getState().user;
 
     if (!route) {
